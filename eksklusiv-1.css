@@ -578,13 +578,66 @@ button {
 .helt__bilde {
   position: absolute;
   inset: 0;
+  overflow: hidden;
+  background: #040b18;
 }
 
+/* Det blå scenelyset fra bildet, uskarpt og strukket over hele skjermen.
+   Bildet er kvadratisk og for lite til å fylle en stor skjerm skarpt,
+   så lyset bak gjør at Marianne glir over i resten av flaten. */
+.helt__bilde::before {
+  content: "";
+  position: absolute;
+  inset: -12%;
+  background: url("nye-bilder/15.webp") 50% 50% / cover no-repeat;
+  filter: blur(46px) saturate(1.25) brightness(.5);
+  opacity: .9;
+}
+
+/* Selve bildet står til høyre i full høyde, og kantene tones mykt ut */
 .helt__bilde img {
-  width: 100%;
+  position: absolute;
+  /* Litt ut over høyre kant, så ansiktet havner til høyre for navnet */
+  right: -6vw;
+  bottom: 0;
   height: 100%;
+  width: auto;
+  max-width: 70%;
+  aspect-ratio: 1 / 1;
   object-fit: cover;
-  object-position: 70% 30%;
+  object-position: 55% 30%;
+  -webkit-mask-image:
+    linear-gradient(90deg, transparent 0%, #000 30%, #000 88%, transparent 100%),
+    linear-gradient(0deg, transparent 0%, #000 24%);
+  -webkit-mask-composite: source-in;
+  mask-image:
+    linear-gradient(90deg, transparent 0%, #000 30%, #000 88%, transparent 100%),
+    linear-gradient(0deg, transparent 0%, #000 24%);
+  mask-composite: intersect;
+}
+
+/* Mellomstore skjermer: bildet litt lenger ut til høyre, så navnet ikke legger seg over ansiktet */
+@media (min-width: 760px) and (max-width: 1199px) {
+  .helt__bilde img {
+    right: -15vw;
+  }
+}
+
+/* Nettbrett på høykant: som på mobil – bildet øverst i hele bredden, tonet ut mot teksten */
+@media (min-width: 760px) and (orientation: portrait) {
+  .helt__bilde img {
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: auto;
+    width: 100%;
+    max-width: none;
+    height: 72%;
+    aspect-ratio: auto;
+    object-position: 58% 28%;
+    -webkit-mask-image: linear-gradient(0deg, transparent 0%, #000 34%);
+    mask-image: linear-gradient(0deg, transparent 0%, #000 34%);
+  }
 }
 
 .js .helt__bilde img {
@@ -598,7 +651,7 @@ button {
   transform: scale(1);
 }
 
-/* Toning fra venstre og nede gir lesbar tekst over nordlyset */
+/* Toning fra venstre og nede gir lesbar tekst over bildet */
 .helt::after {
   content: "";
   position: absolute;
@@ -1735,8 +1788,19 @@ button {
     background: linear-gradient(180deg, rgba(8, 9, 10, .97) 0%, rgba(8, 9, 10, .9) 52%, rgba(8, 9, 10, 0) 100%);
   }
 
+  /* Mobil: bildet øverst i hele bredden, tonet ut mot teksten nederst */
   .helt__bilde img {
-    object-position: 74% 20%;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: auto;
+    width: 100%;
+    max-width: none;
+    height: 72%;
+    aspect-ratio: auto;
+    object-position: 58% 28%;
+    -webkit-mask-image: linear-gradient(0deg, transparent 0%, #000 34%);
+    mask-image: linear-gradient(0deg, transparent 0%, #000 34%);
   }
 
   .helt::after {
