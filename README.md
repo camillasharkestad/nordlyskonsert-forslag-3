@@ -5,3 +5,5 @@ Skisser til ny stil for nettsiden, til å velge mellom. Den ekte nettsiden ligge
 - `index.html` – oversikt over forslagene
 - `index-a.html`, `index-b.html`, `index-c.html` – forslag 3 A, B og C (samme oppsett som i dag, ny stemning)
 - `dagens.html` – forsiden slik den er i dag, til sammenligning
+- `eksklusiv-1.html` – eksklusivt forslag, kinematisk (i Adeles ånd)
+- `eksklusiv-2.html` – eksklusivt forslag, klassisk eleganse (i Bocellis ånd)

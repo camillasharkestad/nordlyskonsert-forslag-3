@@ -1,0 +1,1990 @@
+/* =====================================================================
+   Marianne Juvik Sæbø – eksklusiv forside 1 («Kinematisk»)
+   Nesten svart lerret, fullskjermsbilder fra kyst, fjord, skog og
+   nordlys, tynn og luftig typografi og navigasjon gjemt i hjørnene.
+   Fargene kommer fra bildene – alt annet er svart og elfenben.
+   ===================================================================== */
+
+/* ---------- Grunnverdier ---------- */
+:root {
+  --natt: #08090a;
+  --natt-2: #0c0f11;
+  --elfenben: #f2ede4;
+  --elfenben-90: rgba(242, 237, 228, .9);
+  --elfenben-70: rgba(242, 237, 228, .72);
+  --elfenben-50: rgba(242, 237, 228, .52);
+  --elfenben-25: rgba(242, 237, 228, .26);
+  --elfenben-12: rgba(242, 237, 228, .12);
+  --sans: "Jost", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --serif: "Cormorant Garamond", "Times New Roman", serif;
+  --kant: clamp(16px, 3vw, 44px);
+  --myk: cubic-bezier(.22, .61, .36, 1);
+  --sakte: cubic-bezier(.16, 1, .3, 1);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  scroll-behavior: smooth;
+  background: var(--natt);
+}
+
+body {
+  margin: 0;
+  background: var(--natt);
+  color: var(--elfenben);
+  font-family: var(--sans);
+  font-weight: 300;
+  font-size: 16px;
+  line-height: 1.75;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+@supports (overflow: clip) {
+  body {
+    overflow-x: clip;
+  }
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font: inherit;
+  color: inherit;
+  background: none;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+}
+
+:focus-visible {
+  outline: 1px solid var(--elfenben);
+  outline-offset: 4px;
+}
+
+::selection {
+  background: var(--elfenben);
+  color: var(--natt);
+}
+
+/* Lenke for tastaturbrukere: hopp rett til innholdet */
+.hopp {
+  position: fixed;
+  top: 12px;
+  left: 50%;
+  z-index: 100;
+  transform: translate(-50%, -160%);
+  padding: 12px 22px;
+  background: var(--elfenben);
+  color: var(--natt);
+  font-size: 12px;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  transition: transform .3s var(--myk);
+}
+
+.hopp:focus {
+  transform: translate(-50%, 0);
+}
+
+/* Fin filmkorn over hele siden (bare pynt, kan ikke klikkes) */
+@media (min-width: 760px) {
+  body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: 50;
+    pointer-events: none;
+    opacity: .05;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='k'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23k)'/></svg>");
+  }
+}
+
+/* ---------- Felles typografi ---------- */
+.overtekst {
+  margin: 0 0 18px;
+  font-size: 11px;
+  font-weight: 400;
+  line-height: 1.6;
+  letter-spacing: .38em;
+  text-transform: uppercase;
+  color: var(--elfenben-70);
+}
+
+.tittel-tynn {
+  margin: 0;
+  font-weight: 200;
+  font-size: clamp(30px, 4vw, 56px);
+  line-height: 1.14;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+}
+
+.ingress {
+  margin: 34px 0 28px;
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 300;
+  font-size: clamp(23px, 2.1vw, 31px);
+  line-height: 1.34;
+  color: var(--elfenben);
+}
+
+.brodtekst {
+  margin: 0 0 18px;
+  max-width: 34em;
+  font-size: 16.5px;
+  color: var(--elfenben-70);
+}
+
+/* Tynn, omrisset knapp – fylles med elfenben ved hover */
+.knapp {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 50px;
+  padding: 0 30px 0 calc(30px + .34em);
+  border: 1px solid rgba(242, 237, 228, .72);
+  background: transparent;
+  color: var(--elfenben);
+  font-family: var(--sans);
+  font-size: 11px;
+  font-weight: 400;
+  letter-spacing: .34em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  transition: background-color .5s var(--myk), color .5s var(--myk), border-color .5s var(--myk);
+}
+
+.knapp:hover,
+.knapp:focus-visible {
+  background: var(--elfenben);
+  border-color: var(--elfenben);
+  color: var(--natt);
+}
+
+.knapp--stille {
+  border-color: var(--elfenben-25);
+}
+
+.knapper {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-top: 34px;
+}
+
+.lenke-strek {
+  display: inline-block;
+  padding: 16px 0 10px .36em;
+  border-bottom: 1px solid var(--elfenben-50);
+  font-size: 11px;
+  font-weight: 400;
+  letter-spacing: .36em;
+  text-transform: uppercase;
+  transition: border-color .4s var(--myk), color .4s var(--myk);
+}
+
+.lenke-strek:hover {
+  border-color: var(--elfenben);
+}
+
+/* Sentrerte seksjonshoder */
+.seksjonshode {
+  max-width: 880px;
+  margin: 0 auto;
+  padding: clamp(110px, 17vh, 190px) var(--kant) clamp(56px, 9vh, 96px);
+  text-align: center;
+}
+
+.seksjonshode .overtekst {
+  padding-left: .38em;
+}
+
+.seksjonshode .tittel-tynn {
+  padding-left: .22em;
+}
+
+.seksjonshode__ingress {
+  max-width: 36em;
+  margin: 28px auto 0;
+  color: var(--elfenben-70);
+}
+
+/* ---------- Den faste rammen i hjørnene ---------- */
+.ramme {
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  pointer-events: none;
+  text-shadow: 0 0 14px rgba(0, 0, 0, .32), 0 1px 2px rgba(0, 0, 0, .3);
+}
+
+.ramme > * {
+  pointer-events: auto;
+}
+
+/* Svak toning bak toppen når man har rullet (holder logo og meny lesbare) */
+.ramme::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 150px;
+  background: linear-gradient(180deg, rgba(8, 9, 10, .94) 0%, rgba(8, 9, 10, .66) 42%, rgba(8, 9, 10, 0) 100%);
+  opacity: 0;
+  transition: opacity .6s var(--myk);
+}
+
+.har-rullet .ramme::before {
+  opacity: 1;
+}
+
+/* Tilsvarende svak toning nederst, så hjørnelenkene står rolig over innholdet */
+.ramme::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: -1;
+  height: 150px;
+  background: linear-gradient(0deg, rgba(8, 9, 10, .94) 0%, rgba(8, 9, 10, .66) 42%, rgba(8, 9, 10, 0) 100%);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .6s var(--myk);
+}
+
+.har-rullet .ramme::after {
+  opacity: 1;
+}
+
+.meny-aapen .ramme::after {
+  opacity: 0;
+}
+
+.meny-aapen .ramme::before {
+  opacity: 0;
+}
+
+.ramme__logo {
+  position: absolute;
+  top: calc(var(--kant) - 14px);
+  left: var(--kant);
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  font-size: 15px;
+  font-weight: 300;
+  letter-spacing: .62em;
+  text-transform: uppercase;
+  line-height: 1;
+}
+
+.ramme__oppe-hoyre {
+  position: absolute;
+  top: calc(var(--kant) - 14px);
+  right: var(--kant);
+  display: flex;
+  align-items: center;
+  gap: 34px;
+}
+
+.ramme__lenke {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  font-size: 11px;
+  font-weight: 400;
+  letter-spacing: .36em;
+  text-transform: uppercase;
+  color: var(--elfenben-90);
+  transition: color .4s var(--myk), opacity .5s var(--myk);
+}
+
+/* Tynn strek under aktiv/hoveret lenke */
+.ramme__lenke::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: .36em;
+  bottom: 10px;
+  height: 1px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform .6s var(--sakte);
+}
+
+.ramme__lenke:hover::after,
+.ramme__lenke.er-aktiv::after {
+  transform: scaleX(1);
+}
+
+.ramme__lenke:hover,
+.ramme__lenke.er-aktiv {
+  color: var(--elfenben);
+}
+
+.ramme__meny {
+  display: inline-flex;
+  align-items: center;
+  gap: 16px;
+  min-height: 44px;
+  padding-left: 10px;
+  font-size: 11px;
+  font-weight: 400;
+  letter-spacing: .36em;
+  text-transform: uppercase;
+}
+
+.ramme__meny-strek {
+  position: relative;
+  width: 30px;
+  height: 9px;
+}
+
+.ramme__meny-strek::before,
+.ramme__meny-strek::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: currentColor;
+  box-shadow: 0 0 10px rgba(0, 0, 0, .45);
+  transition: transform .6s var(--sakte), top .6s var(--sakte);
+}
+
+.ramme__meny-strek::before {
+  top: 0;
+}
+
+.ramme__meny-strek::after {
+  top: 8px;
+}
+
+.meny-aapen .ramme__meny-strek::before {
+  top: 4px;
+  transform: rotate(18deg);
+}
+
+.meny-aapen .ramme__meny-strek::after {
+  top: 4px;
+  transform: rotate(-18deg);
+}
+
+.ramme__nede-venstre {
+  position: absolute;
+  left: var(--kant);
+  bottom: calc(var(--kant) - 14px);
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.ramme__skille {
+  font-size: 11px;
+  color: var(--elfenben-50);
+}
+
+.ramme__nede-hoyre {
+  position: absolute;
+  right: var(--kant);
+  bottom: calc(var(--kant) - 14px);
+  margin-right: -.36em;
+}
+
+/* Når menyen er åpen, trekker hjørnelenkene seg tilbake */
+.meny-aapen .ramme__kun-stor {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* ---------- Fullskjermsmeny ---------- */
+.meny {
+  position: fixed;
+  inset: 0;
+  z-index: 58;
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
+  background: var(--natt);
+  opacity: 0;
+  transition: opacity .6s var(--myk);
+}
+
+.meny[hidden] {
+  display: none;
+}
+
+.meny-aapen .meny {
+  opacity: 1;
+}
+
+.meny-aapen,
+.meny-aapen body {
+  overflow: hidden;
+}
+
+.meny__bilde {
+  position: relative;
+  order: 2;
+  overflow: hidden;
+}
+
+.meny__bilde img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 40% 30%;
+  filter: blur(1.5px) brightness(.55) saturate(.85);
+  transform: scale(1.08);
+  transition: transform 2.4s var(--sakte);
+}
+
+.meny-aapen .meny__bilde img {
+  transform: scale(1.03);
+}
+
+.meny__bilde::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, var(--natt) 0%, rgba(8, 9, 10, 0) 45%);
+}
+
+.meny__innhold {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 120px var(--kant) 60px calc(var(--kant) + 4vw);
+}
+
+.meny__liste {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.meny__liste a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 4px 0;
+  font-size: clamp(26px, 3.8vw, 50px);
+  font-weight: 200;
+  line-height: 1.22;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  transition: opacity .4s var(--myk), letter-spacing .8s var(--sakte);
+}
+
+.meny__liste a:focus-visible {
+  outline: none;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: .22em;
+}
+
+@media (hover: hover) {
+  .meny__liste:hover a {
+    opacity: .38;
+  }
+
+  .meny__liste a:hover,
+  .meny__liste a:focus-visible {
+    opacity: 1;
+    letter-spacing: .24em;
+  }
+}
+
+/* Lenkene glir inn én etter én */
+.meny__liste li,
+.meny__fot {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity .8s var(--myk), transform 1s var(--sakte);
+}
+
+.meny-aapen .meny__liste li,
+.meny-aapen .meny__fot {
+  opacity: 1;
+  transform: none;
+}
+
+.meny__liste li:nth-child(2) { transition-delay: .05s; }
+.meny__liste li:nth-child(3) { transition-delay: .1s; }
+.meny__liste li:nth-child(4) { transition-delay: .15s; }
+.meny__liste li:nth-child(5) { transition-delay: .2s; }
+.meny__liste li:nth-child(6) { transition-delay: .25s; }
+.meny__liste li:nth-child(7) { transition-delay: .3s; }
+.meny__fot { transition-delay: .38s; }
+
+.meny__fot {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 28px;
+  margin-top: 48px;
+  padding-top: 24px;
+  border-top: 1px solid var(--elfenben-12);
+}
+
+.meny__fot a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  font-size: 12px;
+  letter-spacing: .16em;
+  color: var(--elfenben-70);
+  transition: color .3s var(--myk);
+}
+
+.meny__fot a:hover {
+  color: var(--elfenben);
+}
+
+/* ---------- 1 · Åpningsbilde ---------- */
+.helt {
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  min-height: 100vh;
+  min-height: 100svh;
+  overflow: hidden;
+  background: #0a1820;
+}
+
+.helt__bilde {
+  position: absolute;
+  inset: 0;
+}
+
+.helt__bilde img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 70% 30%;
+}
+
+.js .helt__bilde img {
+  opacity: 0;
+  transform: scale(1.08);
+  transition: opacity 1.8s ease, transform 4s var(--sakte);
+}
+
+.js .helt.er-klar .helt__bilde img {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* Toning fra venstre og nede gir lesbar tekst over nordlyset */
+.helt::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(90deg, rgba(4, 8, 12, .72) 0%, rgba(4, 8, 12, .38) 34%, rgba(4, 8, 12, 0) 60%),
+    linear-gradient(0deg, rgba(4, 8, 12, .78) 0%, rgba(4, 8, 12, 0) 42%),
+    linear-gradient(180deg, rgba(4, 8, 12, .4) 0%, rgba(4, 8, 12, 0) 20%);
+}
+
+.helt__innhold {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: 980px;
+  padding: 0 var(--kant) clamp(112px, 17vh, 190px);
+}
+
+.helt__over {
+  margin-bottom: 26px;
+  color: var(--elfenben-90);
+}
+
+.helt__tittel {
+  margin: 0 0 40px;
+  font-weight: 200;
+  font-size: clamp(38px, 6.2vw, 92px);
+  line-height: 1.04;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+}
+
+.helt__tittel span {
+  display: block;
+}
+
+.helt__neste {
+  display: inline-flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px 20px;
+  min-height: 44px;
+  font-size: 11px;
+  font-weight: 400;
+  letter-spacing: .3em;
+  text-transform: uppercase;
+}
+
+.helt__neste-etikett {
+  color: var(--elfenben-70);
+}
+
+.helt__neste-strek {
+  width: 46px;
+  height: 1px;
+  background: var(--elfenben-50);
+  transition: width .8s var(--sakte), background-color .4s;
+}
+
+.helt__neste:hover .helt__neste-strek {
+  width: 84px;
+  background: var(--elfenben);
+}
+
+.helt__neste-tekst {
+  color: var(--elfenben);
+}
+
+/* Teksten i åpningen toner inn etter bildet */
+.js .helt__innhold > * {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 1.4s var(--myk), transform 1.6s var(--sakte);
+}
+
+.js .helt.er-klar .helt__innhold > * {
+  opacity: 1;
+  transform: none;
+}
+
+.js .helt.er-klar .helt__innhold > :nth-child(1) { transition-delay: .5s; }
+.js .helt.er-klar .helt__innhold > :nth-child(2) { transition-delay: .7s; }
+.js .helt.er-klar .helt__innhold > :nth-child(3) { transition-delay: 1.1s; }
+
+/* Rull-ned-strek nederst i midten */
+.helt__rull {
+  position: absolute;
+  left: 50%;
+  bottom: 18px;
+  z-index: 2;
+  display: flex;
+  justify-content: center;
+  width: 44px;
+  height: 72px;
+  transform: translateX(-50%);
+}
+
+.helt__rull span {
+  position: relative;
+  display: block;
+  width: 1px;
+  height: 56px;
+  overflow: hidden;
+  background: var(--elfenben-25);
+}
+
+.helt__rull span::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: -40%;
+  width: 1px;
+  height: 40%;
+  background: var(--elfenben);
+  animation: dryp 2.6s var(--myk) infinite;
+}
+
+@keyframes dryp {
+  0% { top: -40%; }
+  70%, 100% { top: 100%; }
+}
+
+/* ---------- Delte seksjoner: bilde på én side, tekst på den andre ---------- */
+.delt {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  min-height: 100vh;
+  min-height: 100svh;
+  background: var(--natt);
+}
+
+.delt__bilde {
+  position: relative;
+  margin: 0;
+  overflow: hidden;
+  background: var(--natt-2);
+}
+
+.delt__bilde img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 30%;
+}
+
+.js .delt__bilde img {
+  transform: scale(1.06);
+  transition: transform 3s var(--sakte);
+}
+
+.js .delt.er-synlig .delt__bilde img {
+  transform: scale(1);
+}
+
+/* Bildet glir mykt over i det svarte mot teksten */
+.delt__bilde::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, rgba(8, 9, 10, 0) 72%, rgba(8, 9, 10, .55) 100%);
+}
+
+.delt--speilet .delt__bilde {
+  order: 2;
+}
+
+.delt--speilet .delt__bilde::after {
+  background: linear-gradient(270deg, rgba(8, 9, 10, 0) 72%, rgba(8, 9, 10, .55) 100%);
+}
+
+.delt .tittel-tynn {
+  font-size: clamp(28px, 3.1vw, 44px);
+}
+
+#kontakt .delt__bilde img {
+  object-position: 50% 28%;
+}
+
+.delt__tekst {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  max-width: 800px;
+  padding: clamp(100px, 14vh, 160px) clamp(32px, 7vw, 120px);
+}
+
+/* ---------- 3 · Kommende konserter ---------- */
+.konserter {
+  padding-bottom: clamp(110px, 16vh, 180px);
+  background: var(--natt);
+}
+
+.turne {
+  list-style: none;
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 0 var(--kant);
+}
+
+.turne__rad {
+  display: grid;
+  grid-template-columns: 230px minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 24px 48px;
+  padding: 46px 0;
+  border-top: 1px solid var(--elfenben-12);
+  transition: border-color .5s var(--myk);
+}
+
+.turne__rad:last-child {
+  border-bottom: 1px solid var(--elfenben-12);
+}
+
+.turne__dato {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  margin: 0;
+}
+
+.turne__dag {
+  min-width: 1.15em;
+  font-size: 66px;
+  font-weight: 200;
+  line-height: 1;
+}
+
+.turne__dag--tekst {
+  color: var(--elfenben-50);
+}
+
+.turne__mnd {
+  display: flex;
+  flex-direction: column;
+  font-size: 11px;
+  font-weight: 400;
+  line-height: 1.7;
+  letter-spacing: .3em;
+  text-transform: uppercase;
+  color: var(--elfenben-90);
+}
+
+.turne__mnd small {
+  font-size: 10px;
+  color: var(--elfenben-50);
+}
+
+.turne__tittel {
+  margin: 0 0 8px;
+  font-size: clamp(18px, 1.55vw, 22px);
+  font-weight: 300;
+  line-height: 1.35;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+}
+
+.turne__sted {
+  margin: 0;
+  font-size: 11.5px;
+  font-weight: 400;
+  letter-spacing: .24em;
+  text-transform: uppercase;
+  color: var(--elfenben-70);
+}
+
+.turne__detalj {
+  max-width: 44em;
+  margin: 14px 0 0;
+  font-size: 15px;
+  line-height: 1.7;
+  color: var(--elfenben-50);
+}
+
+.turne__knapp {
+  min-width: 190px;
+}
+
+/* ---------- 4 · Sitat over fjorden ---------- */
+.sitat {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: 92vh;
+  min-height: 92svh;
+  padding: clamp(110px, 17vh, 180px) var(--kant) 0;
+  overflow: hidden;
+  background: #262a2c;
+}
+
+.sitat__bilde {
+  position: absolute;
+  inset: 0;
+}
+
+/* Lavoppløst panorama: mykt og dempet, som en stemning – ikke et skarpt bilde */
+.sitat__bilde img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 64% 70%;
+  filter: blur(2px) saturate(.8) brightness(.62);
+  transform: scale(1.06);
+}
+
+/* Svak blågrønn fjordtone over det grå panoramaet */
+.sitat__bilde::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: #163845;
+  mix-blend-mode: color;
+  opacity: .6;
+}
+
+.sitat::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(180deg, var(--natt) 0%, rgba(8, 9, 10, .25) 26%, rgba(8, 9, 10, 0) 55%, rgba(8, 9, 10, .4) 82%, var(--natt) 100%),
+    radial-gradient(ellipse 70% 50% at 50% 30%, rgba(8, 9, 10, .35), rgba(8, 9, 10, 0) 75%);
+}
+
+.sitat__tekst {
+  position: relative;
+  z-index: 2;
+  max-width: 1020px;
+  margin: 0;
+  text-align: center;
+}
+
+.sitat__tekst p {
+  margin: 0;
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 300;
+  font-size: clamp(30px, 4.3vw, 62px);
+  line-height: 1.2;
+  color: var(--elfenben);
+  text-shadow: 0 2px 30px rgba(0, 0, 0, .35);
+}
+
+.sitat__tekst span {
+  color: var(--elfenben-70);
+}
+
+/* ---------- Store bildepaneler (ÁLFR og videoer) ---------- */
+.panel {
+  position: relative;
+  isolation: isolate;
+  display: grid;
+  place-items: center;
+  min-height: 100vh;
+  min-height: 100svh;
+  overflow: hidden;
+  background: var(--natt-2);
+}
+
+.panel__bilde {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+}
+
+.panel__bilde img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.js .panel__bilde img {
+  transform: scale(1.07);
+  transition: transform 3.2s var(--sakte);
+}
+
+.js .panel.er-synlig .panel__bilde img {
+  transform: scale(1);
+}
+
+/* Mørk toning bak den sentrerte teksten og myke overganger mot svart */
+.panel::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background:
+    radial-gradient(ellipse 46% 40% at 50% 50%, rgba(4, 6, 8, .62) 0%, rgba(4, 6, 8, 0) 100%),
+    linear-gradient(180deg, var(--natt) 0%, rgba(8, 9, 10, .18) 16%, rgba(8, 9, 10, .12) 76%, rgba(8, 9, 10, .8) 100%);
+}
+
+.panel__innhold {
+  max-width: 780px;
+  padding: 0 var(--kant);
+  text-align: center;
+}
+
+.panel__innhold .overtekst {
+  padding-left: .38em;
+  color: var(--elfenben-90);
+}
+
+.panel__tittel {
+  margin: 0 0 18px;
+  padding-left: .2em;
+  font-size: clamp(28px, 3.6vw, 52px);
+  font-weight: 200;
+  line-height: 1.16;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  text-shadow: 0 2px 40px rgba(0, 0, 0, .45);
+}
+
+.panel__tittel--stor {
+  margin-bottom: 26px;
+  padding-left: .34em;
+  font-size: clamp(66px, 12vw, 176px);
+  line-height: 1;
+  letter-spacing: .34em;
+}
+
+.panel__tekst {
+  max-width: 30em;
+  margin: 0 auto 34px;
+  font-size: 16.5px;
+  color: var(--elfenben-90);
+  text-shadow: 0 1px 18px rgba(0, 0, 0, .6);
+}
+
+/* ÁLFR: månen og grana over teksten */
+.panel--alfr .panel__bilde img {
+  object-position: 50% 30%;
+}
+
+.panel--alfr .panel__innhold {
+  padding-top: 26vh;
+}
+
+.panel--alfr::after {
+  background:
+    radial-gradient(ellipse 58% 44% at 50% 64%, rgba(4, 6, 8, .84) 0%, rgba(4, 6, 8, .3) 70%, rgba(4, 6, 8, 0) 100%),
+    linear-gradient(180deg, var(--natt) 0%, rgba(8, 9, 10, .1) 14%, rgba(8, 9, 10, .2) 70%, rgba(8, 9, 10, .85) 100%);
+}
+
+/* ---------- Konsertprogram: fire høye kolonner ---------- */
+.programrad {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 2px;
+  list-style: none;
+  margin: 2px 0 0;
+  padding: 0;
+}
+
+.programkort {
+  position: relative;
+  display: block;
+  height: min(72vh, 680px);
+  min-height: 460px;
+  overflow: hidden;
+  background: var(--natt-2);
+}
+
+.programkort img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 55% 35%;
+  filter: grayscale(1) brightness(.6) contrast(1.05);
+  transform: scale(1.04);
+  transition: filter 1.2s var(--myk), transform 1.8s var(--sakte);
+}
+
+.programkort::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(0deg, rgba(4, 6, 8, .92) 0%, rgba(4, 6, 8, .35) 42%, rgba(4, 6, 8, 0) 70%);
+}
+
+.programkort:hover img,
+.programkort:focus-visible img {
+  filter: grayscale(0) brightness(.82) contrast(1);
+  transform: scale(1);
+}
+
+.programkort:focus-visible {
+  outline-offset: -6px;
+}
+
+.programkort__innhold {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 24px 46px;
+  text-align: center;
+}
+
+.programkort__tittel {
+  padding-left: .22em;
+  font-size: clamp(16px, 1.45vw, 21px);
+  font-weight: 300;
+  line-height: 1.3;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+}
+
+.programkort__tekst {
+  max-width: 22em;
+  margin-top: 12px;
+  font-size: 14.5px;
+  line-height: 1.6;
+  color: var(--elfenben-70);
+}
+
+.programkort__knapp {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  margin-top: 22px;
+  padding: 0 24px 0 calc(24px + .32em);
+  border: 1px solid var(--elfenben-50);
+  font-size: 10.5px;
+  font-weight: 400;
+  letter-spacing: .32em;
+  text-transform: uppercase;
+  transition: background-color .5s var(--myk), color .5s var(--myk), border-color .5s var(--myk);
+}
+
+.programkort:hover .programkort__knapp,
+.programkort:focus-visible .programkort__knapp {
+  background: var(--elfenben);
+  border-color: var(--elfenben);
+  color: var(--natt);
+}
+
+/* På skjermer med mus vises den korte teksten først ved hover */
+@media (hover: hover) and (min-width: 1100px) {
+  .programkort__tekst {
+    max-height: 0;
+    margin-top: 0;
+    opacity: 0;
+    overflow: hidden;
+    transition: max-height .8s var(--sakte), opacity .6s var(--myk), margin-top .8s var(--sakte);
+  }
+
+  .programkort:hover .programkort__tekst,
+  .programkort:focus-visible .programkort__tekst {
+    max-height: 6em;
+    margin-top: 12px;
+    opacity: 1;
+  }
+}
+
+/* ---------- 6 · Musikk: albumene som loddrette striper ---------- */
+.musikk {
+  background: var(--natt);
+}
+
+/* Høyden er holdt litt under skjermhøyden, så tittelen under et åpent omslag
+   får plass i samme bilde og ikke havner bak hjørnelenkene nederst */
+.striper {
+  --h: min(64vh, 46vw, 720px);
+  position: relative;
+  display: flex;
+  gap: 2px;
+  height: var(--h);
+  margin: 0 0 150px;
+  padding: 0;
+  list-style: none;
+}
+
+.stripe {
+  display: flex;
+  flex: 1 1 0;
+  min-width: 0;
+  transition: flex .95s var(--sakte);
+}
+
+.stripe__flate {
+  position: relative;
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  background: var(--natt-2);
+}
+
+.stripe__flate img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: var(--x, 50%) 50%;
+  filter: saturate(.55) brightness(.6);
+  transition: filter .9s var(--myk);
+}
+
+.stripe__flate::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(0deg, rgba(4, 6, 8, .55) 0%, rgba(4, 6, 8, 0) 45%);
+  transition: opacity .7s var(--myk);
+}
+
+/* Usynlig knapp over hele stripen – for trykk og tastatur */
+.stripe__aapne {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  width: 100%;
+}
+
+.stripe__aapne:focus-visible {
+  outline-offset: -6px;
+}
+
+/* Tittelen står loddrett nederst på hver stripe */
+.stripe__etikett {
+  position: absolute;
+  left: 50%;
+  bottom: 34px;
+  z-index: 1;
+  max-height: calc(100% - 68px);
+  overflow: hidden;
+  writing-mode: vertical-rl;
+  transform: translateX(-50%) rotate(180deg);
+  font-size: 11px;
+  font-weight: 400;
+  letter-spacing: .34em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  color: var(--elfenben-90);
+  text-shadow: 0 1px 12px rgba(0, 0, 0, .6);
+  transition: opacity .5s var(--myk);
+}
+
+/* Teksten om albumet vises under stripene når et omslag er åpent */
+.stripe__info {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 100%;
+  z-index: 3;
+  padding: 30px var(--kant) 0;
+  text-align: center;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-6px);
+  transition: opacity .45s var(--myk), transform .7s var(--sakte);
+}
+
+.stripe__tittel {
+  margin: 0 0 4px;
+  padding-left: .18em;
+  font-size: 18px;
+  font-weight: 300;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+}
+
+.stripe__tittel small {
+  margin-left: .6em;
+  font-size: 11px;
+  letter-spacing: .3em;
+  color: var(--elfenben-50);
+}
+
+.stripe__med {
+  margin: 0 0 6px;
+  font-size: 14px;
+  color: var(--elfenben-70);
+}
+
+.stripe__lenke {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding-left: .32em;
+  font-size: 11px;
+  font-weight: 400;
+  letter-spacing: .32em;
+  text-transform: uppercase;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 8px;
+  text-decoration-color: var(--elfenben-50);
+}
+
+.stripe__lenke:hover {
+  text-decoration-color: var(--elfenben);
+}
+
+/* Åpen stripe: viser hele omslaget i full farge */
+.stripe.er-aapen,
+.stripe:focus-within {
+  flex: 0 0 var(--h);
+}
+
+.stripe.er-aapen .stripe__flate img,
+.stripe:focus-within .stripe__flate img {
+  filter: none;
+}
+
+.stripe.er-aapen .stripe__etikett,
+.stripe:focus-within .stripe__etikett,
+.stripe.er-aapen .stripe__flate::after,
+.stripe:focus-within .stripe__flate::after {
+  opacity: 0;
+}
+
+.stripe.er-aapen .stripe__info,
+.stripe:focus-within .stripe__info {
+  opacity: 1;
+  pointer-events: auto;
+  transform: none;
+  transition-delay: .2s;
+}
+
+@media (hover: hover) {
+  .striper:hover .stripe {
+    flex: 1 1 0;
+  }
+
+  .striper:hover .stripe__flate img {
+    filter: saturate(.4) brightness(.45);
+  }
+
+  .striper .stripe:hover {
+    flex: 0 0 var(--h);
+  }
+
+  .striper .stripe:hover .stripe__flate img {
+    filter: none;
+  }
+
+  .stripe:hover .stripe__etikett,
+  .stripe:hover .stripe__flate::after {
+    opacity: 0;
+  }
+
+  .stripe:hover .stripe__info {
+    opacity: 1;
+    pointer-events: auto;
+    transform: none;
+    transition-delay: .2s;
+  }
+
+  /* Mens musen er over én stripe, skjules teksten til den som var åpen */
+  .striper:hover .stripe:not(:hover) .stripe__info {
+    opacity: 0;
+    pointer-events: none;
+    transition-delay: 0s;
+  }
+
+  .striper:hover .stripe:not(:hover) .stripe__etikett {
+    opacity: 1;
+  }
+}
+
+.musikk__spotify {
+  margin: 0;
+  padding: 0 var(--kant);
+  text-align: center;
+}
+
+/* ---------- 7 · Video ---------- */
+.videoer {
+  padding-bottom: clamp(100px, 15vh, 170px);
+  background: var(--natt);
+}
+
+.panel--video {
+  min-height: 92vh;
+  min-height: 92svh;
+}
+
+.panel--video + .panel--video {
+  margin-top: 2px;
+}
+
+.panel--nordlys {
+  place-items: end center;
+}
+
+/* Nordlyset på lerretet er lyst og mykt – dempes litt så det virker filmatisk, ikke utbrent */
+.panel--nordlys .panel__bilde img {
+  object-position: 50% 30%;
+  filter: brightness(.78) saturate(1.08);
+}
+
+/* Teksten ligger lavt, men godt over hjørnelenkene nederst */
+.panel--nordlys .panel__innhold {
+  max-width: 1120px;
+  padding-bottom: clamp(120px, 17vh, 170px);
+}
+
+.panel__tittel--en-linje {
+  font-size: clamp(26px, 3.2vw, 46px);
+}
+
+.panel--nordlys::after {
+  background:
+    linear-gradient(0deg, rgba(4, 6, 8, .96) 0%, rgba(4, 6, 8, .82) 28%, rgba(4, 6, 8, .35) 46%, rgba(4, 6, 8, 0) 64%),
+    linear-gradient(180deg, var(--natt) 0%, rgba(8, 9, 10, 0) 16%);
+}
+
+.panel--live .panel__bilde img {
+  object-position: 58% 0%;
+}
+
+.panel--live .panel__innhold {
+  padding-bottom: 22vh;
+}
+
+.panel--live::after {
+  background:
+    radial-gradient(ellipse 46% 36% at 50% 38%, rgba(4, 6, 8, .62) 0%, rgba(4, 6, 8, 0) 100%),
+    linear-gradient(180deg, var(--natt) 0%, rgba(8, 9, 10, .15) 16%, rgba(8, 9, 10, .1) 76%, rgba(8, 9, 10, .8) 100%);
+}
+
+/* Studiobildet i sort-hvitt, så nordlysbildene får fargene */
+.panel--studio .panel__bilde img {
+  object-position: 28% 40%;
+  filter: grayscale(1) brightness(.62) contrast(1.08);
+}
+
+.panel--studio::after {
+  background:
+    radial-gradient(ellipse 50% 42% at 50% 50%, rgba(4, 6, 8, .55) 0%, rgba(4, 6, 8, 0) 100%),
+    linear-gradient(180deg, var(--natt) 0%, rgba(8, 9, 10, .2) 16%, rgba(8, 9, 10, .2) 76%, var(--natt) 100%);
+}
+
+.videoer__alle {
+  margin: 0;
+  padding: 70px var(--kant) 0;
+  text-align: center;
+}
+
+/* ---------- 8 · Kontakt ---------- */
+.kontaktliste {
+  margin: 30px 0 0;
+  border-top: 1px solid var(--elfenben-12);
+}
+
+.kontaktliste > div {
+  display: grid;
+  grid-template-columns: 120px minmax(0, 1fr);
+  align-items: baseline;
+  gap: 12px;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--elfenben-12);
+}
+
+.kontaktliste dt {
+  font-size: 10.5px;
+  font-weight: 400;
+  letter-spacing: .32em;
+  text-transform: uppercase;
+  color: var(--elfenben-50);
+}
+
+.kontaktliste dd {
+  margin: 0;
+  font-size: 17px;
+  line-height: 1.6;
+}
+
+.kontaktliste a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  text-decoration: underline;
+  text-decoration-color: transparent;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 6px;
+  transition: text-decoration-color .4s var(--myk);
+}
+
+.kontaktliste a:hover {
+  text-decoration-color: var(--elfenben-70);
+}
+
+.kontaktliste dd:not(.kontaktliste__sosialt) {
+  display: flex;
+  align-items: center;
+  min-height: 44px;
+}
+
+.kontaktliste__sosialt {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0 28px;
+}
+
+/* ---------- Bunn ---------- */
+.fot {
+  padding: clamp(96px, 14vh, 150px) var(--kant) calc(var(--kant) + 70px);
+  border-top: 1px solid var(--elfenben-12);
+  text-align: center;
+}
+
+.fot__navn {
+  margin: 0 0 34px;
+  padding-left: .5em;
+  font-size: clamp(16px, 1.8vw, 24px);
+  font-weight: 200;
+  letter-spacing: .5em;
+  text-transform: uppercase;
+}
+
+.fot__lenker {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0 30px;
+  margin-bottom: 34px;
+}
+
+.fot__lenker a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  font-size: 11px;
+  font-weight: 400;
+  letter-spacing: .28em;
+  text-transform: uppercase;
+  color: var(--elfenben-70);
+  transition: color .3s var(--myk);
+}
+
+.fot__lenker a:hover,
+.fot__liten a:hover {
+  color: var(--elfenben);
+}
+
+.fot__liten {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 0 24px;
+  margin: 0;
+  font-size: 13px;
+  color: var(--elfenben-50);
+}
+
+.fot__liten a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  transition: color .3s var(--myk);
+}
+
+/* ---------- Videovindu ---------- */
+.lysboks {
+  width: min(92vw, 1280px, calc((86vh - 70px) * 16 / 9));
+  max-width: none;
+  max-height: none;
+  margin: auto;
+  padding: 0;
+  border: 0;
+  overflow: visible;
+  background: #000;
+  color: var(--elfenben);
+}
+
+.lysboks::backdrop {
+  background: rgba(4, 5, 6, .93);
+}
+
+.lysboks__ramme {
+  aspect-ratio: 16 / 9;
+}
+
+.lysboks__ramme video,
+.lysboks__ramme iframe {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  background: #000;
+}
+
+.lysboks__lukk {
+  position: absolute;
+  right: -.34em;
+  bottom: calc(100% + 8px);
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  font-size: 11px;
+  font-weight: 400;
+  letter-spacing: .34em;
+  text-transform: uppercase;
+}
+
+/* ---------- Myk inntoning ved rulling ---------- */
+.js .vis {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 1.2s var(--myk), transform 1.5s var(--sakte);
+}
+
+.js .vis.er-synlig {
+  opacity: 1;
+  transform: none;
+}
+
+.panel__innhold > .vis:nth-child(2),
+.delt__tekst > .vis:nth-child(2) { transition-delay: .1s; }
+.panel__innhold > .vis:nth-child(3),
+.delt__tekst > .vis:nth-child(3) { transition-delay: .2s; }
+.panel__innhold > .vis:nth-child(4),
+.delt__tekst > .vis:nth-child(4) { transition-delay: .3s; }
+.delt__tekst > .vis:nth-child(n+5) { transition-delay: .38s; }
+
+/* =====================================================================
+   Mellomstore skjermer
+   ===================================================================== */
+@media (max-width: 1099px) {
+  .striper {
+    --h: min(62vh, 60vw, 640px);
+  }
+
+  .programrad {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .programkort {
+    height: auto;
+    min-height: 0;
+    aspect-ratio: 4 / 5;
+  }
+
+  .turne__rad {
+    grid-template-columns: 190px minmax(0, 1fr) auto;
+    gap: 20px 32px;
+  }
+}
+
+/* Hjørnelenkene nede vises bare på store skjermer */
+@media (max-width: 899px) {
+  .ramme__kun-stor {
+    display: none !important;
+  }
+
+  .ramme::after {
+    display: none;
+  }
+
+  .delt {
+    grid-template-columns: minmax(0, 1fr);
+    min-height: 0;
+  }
+
+  .delt__bilde,
+  .delt--speilet .delt__bilde {
+    order: 0;
+    aspect-ratio: 4 / 5;
+    max-height: 88svh;
+  }
+
+  .delt__bilde::after,
+  .delt--speilet .delt__bilde::after {
+    background: linear-gradient(0deg, var(--natt) 0%, rgba(8, 9, 10, 0) 30%);
+  }
+
+  .delt__tekst {
+    max-width: 640px;
+    padding: 24px var(--kant) 80px;
+  }
+
+  .turne__rad {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 18px;
+    padding: 38px 0;
+  }
+
+  .turne__knapp {
+    justify-self: start;
+  }
+
+  .meny {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .meny__bilde {
+    position: absolute;
+    inset: 0;
+    order: 0;
+  }
+
+  .meny__bilde img {
+    object-position: 50% 30%;
+    filter: blur(2px) brightness(.38) saturate(.85);
+  }
+
+  .meny__bilde::after {
+    background: linear-gradient(90deg, rgba(8, 9, 10, .85) 0%, rgba(8, 9, 10, .35) 100%);
+  }
+
+  .meny__innhold {
+    position: relative;
+    padding: 110px var(--kant) 40px;
+  }
+}
+
+/* =====================================================================
+   Mobil
+   ===================================================================== */
+@media (max-width: 759px) {
+  body {
+    font-size: 16px;
+  }
+
+  .ramme__logo {
+    font-size: 13px;
+    letter-spacing: .52em;
+  }
+
+  .ramme::before {
+    height: 104px;
+    background: linear-gradient(180deg, rgba(8, 9, 10, .97) 0%, rgba(8, 9, 10, .9) 52%, rgba(8, 9, 10, 0) 100%);
+  }
+
+  .helt__bilde img {
+    object-position: 74% 20%;
+  }
+
+  .helt::after {
+    background:
+      linear-gradient(0deg, rgba(4, 8, 12, .92) 0%, rgba(4, 8, 12, .55) 34%, rgba(4, 8, 12, 0) 58%),
+      linear-gradient(180deg, rgba(4, 8, 12, .5) 0%, rgba(4, 8, 12, 0) 18%);
+  }
+
+  .helt__innhold {
+    padding-bottom: 104px;
+  }
+
+  .helt__over {
+    margin-bottom: 18px;
+  }
+
+  .helt__tittel {
+    margin-bottom: 26px;
+    font-size: clamp(32px, 9.6vw, 46px);
+    letter-spacing: .15em;
+  }
+
+  .helt__neste {
+    display: grid;
+    gap: 4px;
+    line-height: 1.7;
+  }
+
+  .helt__neste-strek {
+    display: none;
+  }
+
+  .helt__neste-tekst {
+    letter-spacing: .2em;
+  }
+
+  .tittel-tynn {
+    font-size: clamp(26px, 7.6vw, 34px);
+    letter-spacing: .16em;
+  }
+
+  .seksjonshode .tittel-tynn {
+    padding-left: .16em;
+  }
+
+  .seksjonshode {
+    padding-top: 104px;
+    padding-bottom: 48px;
+  }
+
+  .knapper {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .knapp {
+    white-space: normal;
+    text-align: center;
+  }
+
+  .turne__dag {
+    font-size: 54px;
+  }
+
+  .turne__knapp {
+    justify-self: stretch;
+  }
+
+  .sitat {
+    min-height: 82svh;
+    padding-top: 110px;
+  }
+
+  .sitat__bilde img {
+    object-position: 63% 50%;
+  }
+
+  .sitat__tekst p {
+    font-size: clamp(28px, 8.4vw, 36px);
+  }
+
+  .panel {
+    min-height: 88svh;
+  }
+
+  .panel__tittel {
+    font-size: clamp(24px, 7vw, 32px);
+    letter-spacing: .16em;
+    padding-left: .16em;
+  }
+
+  .panel__tittel--stor {
+    font-size: clamp(56px, 19vw, 84px);
+    letter-spacing: .28em;
+    padding-left: .28em;
+  }
+
+  .panel--alfr .panel__bilde img {
+    object-position: 47% 50%;
+  }
+
+  .panel--alfr .panel__innhold {
+    padding-top: 30svh;
+  }
+
+  .panel--live .panel__bilde img {
+    object-position: 60% 0%;
+  }
+
+  .panel--live .panel__innhold {
+    padding-bottom: 30svh;
+  }
+
+  .programrad {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .programkort {
+    aspect-ratio: 1 / 1;
+  }
+
+  .programkort img {
+    filter: grayscale(.35) brightness(.7);
+  }
+
+  .programkort__innhold {
+    padding-bottom: 32px;
+  }
+
+  /* Albumstripene blir liggende bånd som åpnes ved trykk */
+  .striper {
+    flex-direction: column;
+    height: auto;
+    margin-bottom: 64px;
+  }
+
+  .stripe {
+    display: block;
+    flex: none !important;
+  }
+
+  .stripe__flate {
+    height: 88px;
+    transition: height .9s var(--sakte);
+  }
+
+  .stripe__flate img {
+    object-position: 50% var(--y, 50%);
+  }
+
+  .stripe.er-aapen .stripe__flate {
+    height: 100vw;
+  }
+
+  .stripe__flate::after {
+    background: linear-gradient(90deg, rgba(4, 6, 8, .88) 0%, rgba(4, 6, 8, .55) 55%, rgba(4, 6, 8, .1) 90%);
+  }
+
+  .stripe__etikett {
+    left: var(--kant);
+    right: var(--kant);
+    top: 50%;
+    bottom: auto;
+    max-height: none;
+    writing-mode: horizontal-tb;
+    transform: translateY(-50%);
+    font-size: 11px;
+    letter-spacing: .3em;
+  }
+
+  .stripe__info {
+    position: static;
+    max-height: 0;
+    padding: 0 var(--kant);
+    overflow: hidden;
+    transform: none;
+    transition: max-height .8s var(--sakte), opacity .5s var(--myk), padding .8s var(--sakte);
+  }
+
+  .stripe.er-aapen .stripe__info {
+    max-height: 220px;
+    padding-top: 20px;
+    padding-bottom: 18px;
+  }
+
+  .stripe:focus-within:not(.er-aapen) .stripe__info {
+    opacity: 0;
+  }
+
+  .stripe:focus-within:not(.er-aapen) .stripe__etikett,
+  .stripe:focus-within:not(.er-aapen) .stripe__flate::after {
+    opacity: 1;
+  }
+
+  .stripe:focus-within:not(.er-aapen) .stripe__flate img {
+    filter: saturate(.55) brightness(.6);
+  }
+
+  .musikk__spotify .knapp {
+    width: 100%;
+  }
+
+  .kontaktliste > div {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0;
+    padding: 14px 0 6px;
+  }
+
+  .fot__lenker {
+    gap: 0 22px;
+  }
+
+  .lysboks {
+    width: 100vw;
+  }
+
+  .lysboks__lukk {
+    right: var(--kant);
+  }
+}
+
+/* =====================================================================
+   Redusert bevegelse: ingen glid, zoom eller animasjon
+   ===================================================================== */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition-duration: .01ms !important;
+    transition-delay: 0s !important;
+  }
+
+  .js .vis,
+  .js .helt__innhold > *,
+  .js .helt__bilde img {
+    opacity: 1;
+    transform: none;
+  }
+
+  .js .panel__bilde img,
+  .js .delt__bilde img,
+  .meny__bilde img,
+  .sitat__bilde img {
+    transform: none;
+  }
+}
