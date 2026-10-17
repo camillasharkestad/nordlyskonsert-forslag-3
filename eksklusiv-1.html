@@ -11,8 +11,9 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@1,300;1,400&family=Jost:wght@200;300;400;500&display=swap" rel="stylesheet">
-  <link rel="preload" as="image" href="nye-bilder/15.webp" fetchpriority="high">
-  <link rel="stylesheet" href="eksklusiv-1.css?v=6">
+  <link rel="preload" as="image" href="nye-bilder/15-bred.webp" media="(min-width: 760px) and (orientation: landscape)" fetchpriority="high">
+  <link rel="preload" as="image" href="nye-bilder/15.webp" media="(max-width: 759px), (orientation: portrait)" fetchpriority="high">
+  <link rel="stylesheet" href="eksklusiv-1.css?v=7">
   <script>document.documentElement.classList.add("js");</script>
 </head>
 
@@ -69,8 +70,12 @@
     <!-- 1 · Åpningsbilde -->
     <section class="helt" id="toppen" aria-labelledby="helt-tittel">
       <div class="helt__bilde">
-        <img src="nye-bilder/15.webp" width="828" height="828" fetchpriority="high" decoding="async"
-             alt="Marianne Juvik Sæbø smiler på scenen i svart kjole foran blått lys">
+        <picture>
+          <!-- PC og liggende nettbrett: bildet med lysstripene forlenget mot venstre -->
+          <source media="(min-width: 760px) and (orientation: landscape)" srcset="nye-bilder/15-bred.webp" width="1828" height="828">
+          <img src="nye-bilder/15.webp" width="828" height="828" fetchpriority="high" decoding="async"
+               alt="Marianne Juvik Sæbø smiler på scenen i svart kjole foran blått lys">
+        </picture>
       </div>
       <div class="helt__innhold">
         <p class="overtekst helt__over">Sopran · solist · formidler</p>
