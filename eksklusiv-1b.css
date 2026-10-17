@@ -1,0 +1,35 @@
+/* Eksklusiv 1b – samme side som eksklusiv 1, men med scenebildet (18.webp) øverst.
+   Lastes etter eksklusiv-1.css og endrer bare åpningsbildet. */
+
+/* Mål i forhold til bildeflaten, så Marianne kan plasseres nøyaktig */
+.helt__bilde {
+  container-type: size;
+}
+
+/* Mobil og nettbrett på høykant: uskarpt lys fra scenebildet bak */
+.helt__bilde::before {
+  background-image: url("nye-bilder/18.webp");
+}
+
+/* PC og liggende nettbrett: bildet i full høyde, plassert slik at ansiktet til Marianne
+   står på samme sted som i eksklusiv 1 (79 % ut mot høyre).
+   I 18-bred.webp (1544 x 434) står ansiktet 1045 px fra venstre: 1045 / 434 = 2,408 bildehøyder. */
+@media (min-width: 760px) and (orientation: landscape) {
+  .helt__bilde img {
+    inset: auto;
+    top: 0;
+    left: calc(79cqw - 2.408 * 100cqh);
+    width: auto;
+    height: 100%;
+    max-width: none;
+    object-fit: fill;
+    filter: contrast(1.05) saturate(1.04) brightness(.92);
+  }
+}
+
+/* Mobil og nettbrett på høykant: Marianne midt i bildet øverst */
+@media (max-width: 759px), (orientation: portrait) {
+  .helt__bilde img {
+    object-position: 52% 50%;
+  }
+}

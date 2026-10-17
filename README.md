@@ -7,3 +7,4 @@ Skisser til ny stil for nettsiden, til å velge mellom. Den ekte nettsiden ligge
 - `dagens.html` – forsiden slik den er i dag, til sammenligning
 - `eksklusiv-1.html` – eksklusivt forslag, kinematisk (i Adeles ånd)
 - `eksklusiv-2.html` – eksklusivt forslag, klassisk eleganse (i Bocellis ånd)
+- `eksklusiv-1b.html` – som eksklusiv 1, med scenebildet øverst
