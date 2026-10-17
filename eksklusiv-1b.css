@@ -1,35 +1,20 @@
-/* Eksklusiv 1b – samme side som eksklusiv 1, men med scenebildet (18.webp) øverst.
+/* Eksklusiv 1b – samme side og samme plassering av Marianne som eksklusiv 1,
+   men på PC er bakgrunnen det ekte sceneteppet fra scenebildet (18-naer.webp).
    Lastes etter eksklusiv-1.css og endrer bare åpningsbildet. */
 
-/* Mål i forhold til bildeflaten, så Marianne kan plasseres nøyaktig */
-.helt__bilde {
-  container-type: size;
+/* Sceneteppet er lysere enn stripene i eksklusiv 1: mørkere toning bak navnet */
+.helt::after {
+  background:
+    linear-gradient(90deg, rgba(2, 5, 14, .94) 0%, rgba(2, 5, 14, .84) 28%, rgba(2, 5, 14, .52) 44%, rgba(2, 5, 14, .16) 56%, rgba(2, 5, 14, 0) 66%),
+    linear-gradient(0deg, rgba(4, 8, 12, .8) 0%, rgba(4, 8, 12, 0) 42%),
+    linear-gradient(180deg, rgba(4, 8, 12, .45) 0%, rgba(4, 8, 12, 0) 20%);
 }
 
-/* Mobil og nettbrett på høykant: uskarpt lys fra scenebildet bak */
-.helt__bilde::before {
-  background-image: url("nye-bilder/18.webp");
-}
-
-/* PC og liggende nettbrett: bildet i full høyde, plassert slik at ansiktet til Marianne
-   står på samme sted som i eksklusiv 1 (79 % ut mot høyre).
-   I 18-bred.webp (1544 x 434) står ansiktet 1045 px fra venstre: 1045 / 434 = 2,408 bildehøyder. */
-@media (min-width: 760px) and (orientation: landscape) {
-  .helt__bilde img {
-    inset: auto;
-    top: 0;
-    left: calc(79cqw - 2.408 * 100cqh);
-    width: auto;
-    height: 100%;
-    max-width: none;
-    object-fit: fill;
-    filter: contrast(1.05) saturate(1.04) brightness(.92);
-  }
-}
-
-/* Mobil og nettbrett på høykant: Marianne midt i bildet øverst */
+/* Mobil og nettbrett på høykant: som i eksklusiv 1 */
 @media (max-width: 759px), (orientation: portrait) {
-  .helt__bilde img {
-    object-position: 52% 50%;
+  .helt::after {
+    background:
+      linear-gradient(0deg, rgba(4, 8, 12, .92) 0%, rgba(4, 8, 12, .55) 34%, rgba(4, 8, 12, 0) 58%),
+      linear-gradient(180deg, rgba(4, 8, 12, .5) 0%, rgba(4, 8, 12, 0) 18%);
   }
 }
