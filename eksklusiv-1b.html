@@ -14,20 +14,15 @@
   <link rel="preload" as="image" href="nye-bilder/18-naer.webp" media="(min-width: 760px) and (orientation: landscape)" fetchpriority="high">
   <link rel="preload" as="image" href="nye-bilder/15.webp" media="(max-width: 759px), (orientation: portrait)" fetchpriority="high">
   <link rel="stylesheet" href="eksklusiv-1.css?v=7">
-  <link rel="stylesheet" href="eksklusiv-1b.css?v=4">
+  <link rel="stylesheet" href="eksklusiv-1b.css?v=5">
   <script>
     document.documentElement.classList.add("js");
-    /* Introen med navnet vises bare første gang siden åpnes i en økt */
-    try {
-      if (sessionStorage.getItem("intro-sett-eksklusiv")) {
-        document.documentElement.classList.add("uten-intro");
-      } else {
-        sessionStorage.setItem("intro-sett-eksklusiv", "1");
-        document.documentElement.classList.add("med-intro");
-      }
-    } catch (feil) {
-      document.documentElement.classList.add("med-intro");
-    }
+    /* Introen med navnet vises hver gang siden åpnes, og fjernes alltid etterpå
+       (også når animasjoner er slått av på maskinen) */
+    document.documentElement.classList.add("med-intro");
+    setTimeout(function () {
+      document.documentElement.classList.add("intro-ferdig");
+    }, window.matchMedia("(prefers-reduced-motion: reduce)").matches ? 1600 : 3400);
   </script>
 </head>
 
