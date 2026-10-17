@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="no">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <title>Designforslag – Marianne Juvik Sæbø</title>
+  <link rel="icon" href="favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    /* Oversikt over designforslagene. Bare for å velge – ikke en del av nettsiden. */
+    :root {
+      --bg: #f6f4ef;
+      --kort: #fdfcf9;
+      --tekst: #27323a;
+      --dempet: #5d676d;
+      --linje: rgba(39, 50, 58, 0.14);
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--tekst);
+      font-family: "Jost", Arial, sans-serif;
+      font-weight: 300;
+      line-height: 1.6;
+    }
+    .wrap { max-width: 1120px; margin: 0 auto; padding: 64px 24px 80px; }
+    .liten { font-size: 0.78rem; letter-spacing: 0.24em; text-transform: uppercase; color: var(--dempet); margin: 0 0 14px; }
+    h1 {
+      font-family: "Cormorant Garamond", Georgia, serif;
+      font-weight: 400;
+      font-size: clamp(2.4rem, 6vw, 4rem);
+      line-height: 1.05;
+      margin: 0 0 18px;
+    }
+    .ingress { max-width: 640px; color: var(--dempet); font-size: 1.05rem; margin: 0 0 48px; }
+    h2 {
+      font-family: "Cormorant Garamond", Georgia, serif;
+      font-weight: 400;
+      font-size: 1.9rem;
+      margin: 56px 0 6px;
+    }
+    .forklaring { color: var(--dempet); margin: 0 0 22px; }
+    .rutenett { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 26px; }
+    .kort {
+      display: flex;
+      flex-direction: column;
+      background: var(--kort);
+      border: 1px solid var(--linje);
+      color: inherit;
+      text-decoration: none;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+    .kort:hover, .kort:focus-visible { transform: translateY(-3px); box-shadow: 0 14px 34px rgba(39, 50, 58, 0.12); }
+    .kort img { width: 100%; aspect-ratio: 3 / 2; object-fit: cover; display: block; }
+    .kort-tekst { padding: 20px 22px 24px; }
+    .bokstav { font-size: 0.74rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--dempet); }
+    .kort h3 {
+      font-family: "Cormorant Garamond", Georgia, serif;
+      font-weight: 500;
+      font-size: 1.55rem;
+      margin: 4px 0 8px;
+    }
+    .kort p { margin: 0; color: var(--dempet); font-size: 0.97rem; }
+    .kommer { opacity: 0.6; pointer-events: none; }
+    .bunn { margin-top: 64px; padding-top: 24px; border-top: 1px solid var(--linje); color: var(--dempet); font-size: 0.92rem; }
+    .bunn a { color: var(--tekst); }
+    @media (prefers-reduced-motion: reduce) { .kort { transition: none; } .kort:hover { transform: none; } }
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <p class="liten">Marianne Juvik Sæbø</p>
+    <h1>Designforslag til nettsiden</h1>
+    <p class="ingress">
+      Her er forslagene til ny stil for forsiden, med hav, fjord, skog og natur. Klikk på et forslag for å se hele forsiden.
+      Den virker både på PC og mobil. Undersidene (ÁLFR, Haugtussa osv.) er foreløpig som i dag.
+    </p>
+
+    <h2>Forslag 3 – samme oppsett, ny stemning</h2>
+    <p class="forklaring">Oppsettet er det samme som i dag. Bare farger, skrift og bilder er nye.</p>
+    <div class="rutenett">
+      <a class="kort" href="index-a.html">
+        <img src="nye-bilder/1.webp" alt="Marianne på svaberget i tyllkjole" style="object-position: 50% 30%">
+        <span class="kort-tekst">
+          <span class="bokstav">Forslag A</span>
+          <h3>Fjordlys – kyst og tåke</h3>
+          <p>Lyst og luftig, nærmest Helene Bøksles side. Tåkeblått og skifergrått, tynn og elegant skrift.</p>
+        </span>
+      </a>
+      <a class="kort" href="index-b.html">
+        <img src="nye-bilder/10.webp" alt="Marianne i bunad i tåkete skog" style="object-position: 50% 25%">
+        <span class="kort-tekst">
+          <span class="bokstav">Forslag B</span>
+          <h3>Skog og mose</h3>
+          <p>Lin og bjørkenever med granskoggrønt og mose. Varmere og mer jordnært.</p>
+        </span>
+      </a>
+      <a class="kort" href="index-c.html">
+        <img src="nye-bilder/13.webp" alt="Marianne i gullkjole på kystheia i solnedgang" style="object-position: 50% 35%">
+        <span class="kort-tekst">
+          <span class="bokstav">Forslag C</span>
+          <h3>Hav og kveldslys</h3>
+          <p>Sand, havblått og gyllent kveldslys, med følelse av horisont og åpent hav.</p>
+        </span>
+      </a>
+    </div>
+
+    <!-- EKSKLUSIVE -->
+
+    <p class="bunn">
+      Til sammenligning: <a href="dagens.html">forsiden slik den er i dag</a>.
+      Forslagene er skisser til å velge mellom. Den ekte nettsiden er ikke endret.
+    </p>
+  </main>
+</body>
+</html>

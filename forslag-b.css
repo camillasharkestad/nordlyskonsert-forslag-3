@@ -1,0 +1,943 @@
+/* =====================================================================
+   Forslag B – «Skog og mose»
+   Nordisk skog: lys lin og bjørkenever som bunn, dyp granskog, mose og
+   bark som aksenter, tåkegrå for sekundærtekst. Luftig og rolig, men
+   varmere og mer jordnær enn et helt hvitt uttrykk.
+
+   Denne fila legges ETTER om-marianne.css og overstyrer bare utseende
+   (farger, skrift, bakgrunner, bildebehandling). Oppsett, rekkefølge,
+   rutenett og tekster er nøyaktig som før.
+   ===================================================================== */
+
+:root {
+  /* Fargene som resten av stilarket allerede bruker, lagt om til skog */
+  --bg: #f5f1e8;          /* lin / bjørkenever – hovedbakgrunn */
+  --cream: #fbf9f3;       /* lys never – kort og lyse felt */
+  --white: #ffffff;
+  --rose: #536236;        /* mose – etiketter, lenker, hover (kontrast > 4,5:1) */
+  --rose-light: #b9c196;  /* lav – myke detaljer */
+  --brown: #1f3b30;       /* granskog – overskrifter, knapper, meny */
+  --brown-soft: #4a574e;  /* mørk tåke – ingress */
+  --text: #26302a;        /* nesten svart grønn – brødtekst */
+  --muted: #555d57;       /* tåkegrå – sekundærtekst */
+  --line: rgba(31, 59, 48, 0.14);
+
+  /* Egne fargenavn for forslaget */
+  --spruce: #1f3b30;
+  --spruce-deep: #15281f;
+  --moss: #536236;
+  --moss-soft: #8b9866;
+  --lichen: #cdd3ad;
+  --bark: #5b4636;
+  --birch: #ece8dc;
+  --sand: #ebe3d3;
+  --sand-deep: #e2d7c3;
+  --on-dark: #f2eee3;
+
+  --serif: "Fraunces", Georgia, "Times New Roman", serif;
+  --sans: "Albert Sans", "Helvetica Neue", Arial, sans-serif;
+
+  --shadow-soft: 0 22px 44px -28px rgba(21, 40, 31, 0.38);
+  --shadow-lift: 0 30px 60px -30px rgba(21, 40, 31, 0.48);
+}
+
+/* ---------- Grunnmur: skrift og farger ---------- */
+
+body {
+  font-family: var(--sans);
+  font-weight: 400;
+  background: var(--bg);
+  color: var(--text);
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background: #d8dcc0;
+  color: var(--spruce-deep);
+}
+
+/* Alle serif-overskrifter: Fraunces, lett og myk, vanlig skrift (ikke versaler) */
+h1,
+h2,
+.story-copy h3,
+.video-card h3,
+.concerts-heading h2,
+.contact-side h2,
+.contact-main h3,
+.upcoming-title,
+.upcoming-card h3,
+.program-card-title,
+.program-hero h1,
+.program-option h3,
+.projects-hero h1,
+.project-title {
+  font-family: var(--serif);
+  font-weight: 300;
+  font-variation-settings: "SOFT" 100;
+  text-transform: none;
+  letter-spacing: -0.012em;
+  color: var(--brown);
+}
+
+h2 {
+  font-size: clamp(2.2rem, 4.2vw, 3.7rem);
+  line-height: 1.08;
+}
+
+/* Små etiketter over overskriftene: luftige versaler i mose */
+.eyebrow,
+.section-label,
+.contact-label {
+  font-family: var(--sans);
+  font-weight: 500;
+  font-size: 0.72rem;
+  letter-spacing: 0.3em;
+  color: var(--moss);
+}
+
+/* En tynn strek foran etikettene som står venstrestilt */
+.eyebrow,
+.intro .section-label,
+.contact-label {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.eyebrow::before,
+.intro .section-label::before,
+.contact-label::before {
+  content: "";
+  flex: none;
+  width: 36px;
+  height: 1px;
+  background: currentColor;
+  opacity: 0.6;
+}
+
+.section-subtitle {
+  color: var(--muted);
+  font-size: 1.06rem;
+  line-height: 1.75;
+}
+
+/* ---------- Knapper: avrundet som menyen, granskog og mose ---------- */
+
+.button {
+  min-height: 50px;
+  padding: 0 28px;
+  border-radius: 999px;
+  border: 1px solid rgba(31, 59, 48, 0.55);
+  background: transparent;
+  color: var(--brown);
+  font-family: var(--sans);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  transition: background 0.25s ease, border-color 0.25s ease, color 0.25s ease, transform 0.25s ease;
+}
+
+.button.primary {
+  background: var(--brown);
+  border-color: var(--brown);
+  color: var(--on-dark);
+}
+
+.button:hover {
+  background: var(--moss);
+  border-color: var(--moss);
+  color: #ffffff;
+}
+
+/* ---------- Toppmeny (PC): lys pille i lin ---------- */
+
+@media (min-width: 1201px) {
+  /* NB: ingen backdrop-filter her – det ville flyttet språkknappen inn i pillen */
+  .site-nav {
+    border: 1px solid rgba(31, 59, 48, 0.1);
+    background: rgba(251, 249, 243, 0.93);
+    box-shadow: 0 14px 34px -18px rgba(21, 40, 31, 0.3);
+  }
+
+  .site-nav a {
+    font-family: var(--sans);
+    font-size: 0.76rem;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    color: var(--brown);
+  }
+
+  .site-nav a:hover {
+    color: var(--moss);
+  }
+
+  .site-nav .lang-current {
+    border: 1px solid rgba(31, 59, 48, 0.1);
+    background: rgba(251, 249, 243, 0.86);
+    box-shadow: 0 14px 34px -18px rgba(21, 40, 31, 0.3);
+    font-family: var(--sans);
+    font-size: 0.74rem;
+    font-weight: 500;
+    letter-spacing: 0.16em;
+    color: var(--brown);
+  }
+}
+
+.lang-current:hover,
+.lang-current[aria-expanded="true"] {
+  color: var(--moss);
+}
+
+.lang-list {
+  background: var(--cream);
+  box-shadow: 0 18px 40px -16px rgba(21, 40, 31, 0.3);
+}
+
+.lang-option {
+  font-family: var(--sans);
+  color: var(--brown);
+}
+
+.lang-option:hover,
+.lang-option:focus-visible,
+.lang-option[aria-selected="true"] {
+  background: rgba(83, 98, 54, 0.1);
+}
+
+/* ---------- Toppmeny (mobil og nettbrett) ---------- */
+
+@media (max-width: 1200px) {
+  .site-header {
+    background: rgba(245, 241, 232, 0.94);
+    border-bottom: 1px solid var(--line);
+  }
+
+  .mobile-logo {
+    font-family: var(--serif);
+    font-variation-settings: "SOFT" 100;
+    font-size: 1.02rem;
+    font-weight: 400;
+    letter-spacing: 0.34em;
+    color: var(--brown);
+  }
+
+  .menu-button span {
+    background: var(--brown);
+  }
+
+  .site-nav {
+    background: var(--cream);
+  }
+
+  .site-nav a,
+  .lang-current {
+    font-family: var(--sans);
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    color: var(--brown);
+  }
+
+  .site-nav a,
+  .lang-switch {
+    border-bottom-color: var(--line);
+  }
+
+  .site-nav a:hover {
+    color: var(--moss);
+  }
+}
+
+/* ---------- Banner ---------- */
+
+.hero {
+  background:
+    radial-gradient(ellipse at 8% 0%, rgba(255, 255, 255, 0.95), transparent 55%),
+    radial-gradient(circle at 96% 92%, rgba(139, 152, 102, 0.16), transparent 42%),
+    linear-gradient(160deg, #fbf9f4 0%, #f5f1e8 58%, #eee9dc 100%);
+}
+
+.hero::after {
+  background: linear-gradient(180deg, rgba(245, 241, 232, 0), var(--bg));
+}
+
+/* Navnet: stor, lett antikva i granskog (erstatter roségull-skriften) */
+.hero h1 {
+  font-family: var(--serif);
+  font-weight: 300;
+  font-variation-settings: "SOFT" 100, "opsz" 144;
+  font-size: clamp(3.1rem, 6.3vw, 6.4rem);
+  line-height: 1.0;
+  letter-spacing: -0.025em;
+  color: var(--brown);
+  background: none;
+  -webkit-background-clip: border-box;
+  background-clip: border-box;
+  -webkit-text-fill-color: currentColor;
+}
+
+.hero-lead {
+  font-family: var(--serif);
+  font-weight: 300;
+  font-variation-settings: "SOFT" 100;
+  font-size: clamp(1.2rem, 1.8vw, 1.42rem);
+  line-height: 1.55;
+  color: var(--brown-soft);
+}
+
+.hero-actions {
+  margin-top: 34px;
+}
+
+/* Bildet: helt fotografi med myke kanter, en forskjøvet flate bak (redaksjonelt, som hos Bøksle).
+   Bildet er liggende (6:5), omtrent like stort som det gamle bannerbildet, så banneret
+   ikke blir høyere enn før og «Kommende konserter» fortsatt vises rett under. */
+@media (min-width: 981px) {
+  .hero {
+    --hero-luft: clamp(0px, 2.6vw, 44px);  /* lik luft mot venstre og høyre skjermkant */
+  }
+
+  .hero-inner {
+    align-items: center;
+    padding-bottom: clamp(44px, 4vw, 60px);
+  }
+
+  /* Litt luft mot venstre kant, så teksten ikke klistrer seg til skjermkanten */
+  .hero-content {
+    padding-bottom: 0;
+    padding-left: var(--hero-luft);
+  }
+
+  .hero-image {
+    position: relative;
+    isolation: isolate;
+    margin-bottom: 0;
+    padding-right: var(--hero-luft);
+  }
+
+  .hero-image img {
+    width: min(100%, 580px);
+    aspect-ratio: 6 / 5;
+    object-fit: cover;
+    object-position: 50% 56%;
+    border-radius: 2px;
+    -webkit-mask-image: none;
+    mask-image: none;
+    /* Litt lysere og mykere, så skogen ikke blir for tung mot den lyse siden */
+    filter: brightness(1.05) saturate(0.9);
+    box-shadow: 0 40px 70px -36px rgba(21, 40, 31, 0.55);
+  }
+
+  /* Forskjøvet flate i lav-grønt bak bildet */
+  .hero-image::before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    top: 30px;
+    bottom: -30px;
+    right: calc(var(--hero-luft) + 30px);
+    width: min(calc(100% - var(--hero-luft)), 580px);  /* samme bredde som bildet */
+    background:
+      linear-gradient(160deg, rgba(255, 255, 255, 0.35), transparent 60%),
+      #dcdcc6;
+    border-radius: 2px;
+  }
+}
+
+/* ---------- Kommende konserter (kortene øverst) ---------- */
+
+.upcoming {
+  background: var(--bg);
+}
+
+.upcoming-title {
+  font-size: clamp(1.9rem, 3vw, 2.6rem);
+  font-weight: 300;
+  letter-spacing: -0.01em;
+}
+
+.upcoming-card {
+  background: var(--cream);
+  border: 1px solid rgba(31, 59, 48, 0.1);
+  border-radius: 2px;
+  box-shadow: var(--shadow-soft);
+}
+
+.upcoming-date {
+  border-radius: 2px;
+  background: #ffffff;
+  box-shadow: 0 12px 26px -12px rgba(21, 40, 31, 0.35);
+}
+
+.upcoming-month {
+  background: var(--brown);
+  color: var(--on-dark);
+  font-family: var(--sans);
+  font-size: 0.64rem;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+}
+
+.upcoming-day {
+  font-family: var(--serif);
+  font-variation-settings: "SOFT" 100;
+  font-weight: 400;
+  color: var(--brown);
+  font-size: 2.2rem;
+}
+
+/* «Kommer» får samme høyde som et dato-tall, så korttitlene står på linje */
+.upcoming-day-text {
+  font-size: 1.12rem;
+  box-sizing: border-box;
+  min-height: calc(2.2rem + 5px);
+  padding-top: 12px;
+}
+
+.upcoming-weekday {
+  font-family: var(--sans);
+  font-size: 0.76rem;
+  color: var(--muted);
+}
+
+.upcoming-card h3 {
+  font-size: clamp(1.15rem, 1.5vw, 1.32rem);
+  font-weight: 400;
+  letter-spacing: -0.005em;
+}
+
+.upcoming-card p {
+  color: var(--muted);
+  font-size: 0.86rem;
+}
+
+.upcoming-button {
+  min-height: 38px;
+  padding: 0 22px;
+  border: 1px solid var(--brown);
+  border-radius: 999px;
+  background: var(--brown);
+  color: var(--on-dark);
+  font-family: var(--sans);
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  box-shadow: 0 10px 20px -12px rgba(21, 40, 31, 0.6);
+}
+
+.upcoming-button:hover {
+  background: var(--moss);
+  border-color: var(--moss);
+  box-shadow: 0 12px 24px -12px rgba(83, 98, 54, 0.7);
+}
+
+/* «Se alle» som lys knapp med strek, så den ikke konkurrerer med kortene */
+.upcoming-actions .upcoming-button {
+  background: transparent;
+  color: var(--brown);
+  border-color: rgba(31, 59, 48, 0.55);
+  box-shadow: none;
+}
+
+.upcoming-actions .upcoming-button:hover {
+  background: var(--moss);
+  border-color: var(--moss);
+  color: #ffffff;
+}
+
+/* ---------- Om Marianne ---------- */
+
+.intro {
+  background: var(--bg);
+  padding-top: clamp(48px, 6vw, 84px);
+  padding-bottom: clamp(56px, 7vw, 96px);
+}
+
+.intro-text {
+  color: #343d37;
+  font-size: 1.08rem;
+  line-height: 1.8;
+}
+
+.intro-actions {
+  margin-top: 42px;
+  gap: 14px;
+}
+
+/* ---------- Aktuelt: bånd i bjørkenever med programkortene ---------- */
+
+.aktuelt {
+  background:
+    radial-gradient(ellipse at 0% 0%, rgba(255, 255, 255, 0.5), transparent 50%),
+    var(--birch);
+  border-top: 0;
+  border-bottom: 0;
+}
+
+.program-head h2 {
+  font-size: clamp(2rem, 3.4vw, 3.1rem);
+  line-height: 1.12;
+}
+
+.program-card {
+  background: var(--cream);
+  border: 0;
+  border-radius: 2px;
+  box-shadow: 0 1px 0 rgba(21, 40, 31, 0.05), var(--shadow-soft);
+}
+
+.program-card:hover,
+.program-card:focus-visible {
+  box-shadow: 0 1px 0 rgba(21, 40, 31, 0.05), var(--shadow-lift);
+}
+
+.program-card:focus-visible {
+  outline-color: var(--moss);
+}
+
+.program-card img {
+  background: #dcd8c9;
+  transition: transform 0.8s cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+@media (hover: hover) {
+  .program-card:hover img {
+    transform: scale(1.04);
+  }
+}
+
+.program-card-body {
+  padding: 16px 18px 18px;
+}
+
+.program-card-title {
+  font-size: 1.32rem;
+  font-weight: 400;
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+}
+
+.program-card-text {
+  color: var(--muted);
+  font-size: 0.88rem;
+  line-height: 1.55;
+}
+
+.program-card-more {
+  color: var(--moss);
+  font-family: var(--sans);
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+}
+
+/* ---------- Sitatet: skogsbånd med Marianne på vei inn i granskogen ---------- */
+
+.quote {
+  position: relative;
+  isolation: isolate;
+  padding: clamp(96px, 12vw, 170px) 0;
+  background: var(--spruce-deep);
+}
+
+/* Bildet ligger mykt og dempet i bakgrunnen (lav oppløsning, derfor litt uskarpt med vilje) */
+.quote::before {
+  content: "";
+  position: absolute;
+  inset: -16px;
+  z-index: -2;
+  background: url("nye-bilder/2.webp") 50% 42% / cover no-repeat;
+  filter: blur(2px) saturate(0.75);
+}
+
+/* Grønn slør over bildet, så teksten er lett å lese */
+.quote::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background:
+    radial-gradient(ellipse at 50% 50%, rgba(21, 40, 31, 0.62), rgba(21, 40, 31, 0.82) 75%),
+    linear-gradient(180deg, rgba(21, 40, 31, 0.3), rgba(21, 40, 31, 0.1) 50%, rgba(21, 40, 31, 0.35));
+}
+
+.quote-text {
+  max-width: 1000px;
+  font-family: var(--serif);
+  font-weight: 300;
+  font-style: italic;
+  font-variation-settings: "SOFT" 100;
+  font-size: clamp(2.1rem, 4.6vw, 4.3rem);
+  line-height: 1.14;
+  letter-spacing: -0.015em;
+  color: var(--on-dark);
+  text-shadow: 0 2px 30px rgba(10, 22, 16, 0.35);
+}
+
+.quote-text span {
+  color: var(--lichen);
+}
+
+/* ---------- Hør Marianne ---------- */
+
+.music-section {
+  background: var(--cream);
+  border-top: 0;
+  border-bottom: 0;
+}
+
+.album-card img {
+  background: #dcd8c9;
+  border-radius: 1px;
+  box-shadow: 0 30px 50px -32px rgba(21, 40, 31, 0.55);
+}
+
+.album-card h3 {
+  margin-top: 18px;
+  font-family: var(--sans);
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--moss);
+}
+
+.album-card p {
+  margin-top: 4px;
+  font-family: var(--serif);
+  font-variation-settings: "SOFT" 100;
+  font-size: clamp(1.02rem, 1.4vw, 1.18rem);
+  font-weight: 400;
+  color: var(--brown);
+}
+
+.listen-link {
+  color: var(--brown);
+  font-family: var(--sans);
+  font-size: 0.74rem;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  border-bottom-color: rgba(31, 59, 48, 0.3);
+}
+
+.listen-link:hover {
+  color: var(--moss);
+  border-color: var(--moss);
+}
+
+/* ---------- Konsertlisten ---------- */
+
+.concerts {
+  background: var(--bg);
+  border-bottom: 0;
+}
+
+.concerts-heading h2 {
+  font-size: clamp(2.1rem, 3.3vw, 2.9rem);
+  font-weight: 300;
+  line-height: 1.08;
+  letter-spacing: -0.012em;
+}
+
+.concerts-heading h2 span {
+  margin-top: 16px;
+  font-family: var(--sans);
+  font-size: 0.74rem;
+  font-weight: 500;
+  letter-spacing: 0.3em;
+  color: var(--moss);
+}
+
+/* Tynne linjer mellom konsertene, som en programliste */
+.event-list {
+  gap: 0;
+  border-top: 1px solid var(--line);
+}
+
+.event-item {
+  padding: 26px 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.event-date-box {
+  border-right-color: var(--line);
+  color: var(--brown);
+}
+
+.event-date-box span {
+  font-family: var(--serif);
+  font-variation-settings: "SOFT" 100;
+  font-weight: 300;
+  font-size: 2.3rem;
+  letter-spacing: -0.02em;
+}
+
+.event-date-box small {
+  margin-top: 8px;
+  font-family: var(--sans);
+  font-size: 0.66rem;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  line-height: 1.35;
+  color: var(--muted);
+}
+
+.event-info h3 {
+  margin-bottom: 6px;
+  font-family: var(--sans);
+  font-size: 0.86rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  line-height: 1.45;
+  text-transform: uppercase;
+  color: var(--brown);
+}
+
+.event-info p {
+  color: var(--muted);
+  font-size: 0.96rem;
+  line-height: 1.6;
+}
+
+.event-link {
+  color: var(--brown);
+  font-family: var(--sans);
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  border-bottom-color: rgba(31, 59, 48, 0.35);
+}
+
+.event-link:hover {
+  color: var(--moss);
+}
+
+/* ---------- Kontakt ---------- */
+
+.contact {
+  position: relative;
+  isolation: isolate;
+  padding-top: clamp(64px, 7vw, 100px);
+  padding-bottom: clamp(56px, 6vw, 88px);
+  background:
+    radial-gradient(circle at 88% 12%, rgba(139, 152, 102, 0.16), transparent 42%),
+    linear-gradient(180deg, #f0eadd 0%, var(--sand) 100%);
+}
+
+/* Tåkete fjordbilde (Marianne på stranden) svakt inn fra høyre, som et minne om kysten */
+.contact::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: url("nye-bilder/6.png") 100% 62% / auto 100% no-repeat;
+  opacity: 0.34;
+  mix-blend-mode: multiply;
+  /* Lysere og mykere, så den uskarpe steinen i forgrunnen ikke blir en mørk flekk */
+  filter: brightness(1.22) contrast(0.82) saturate(0.85);
+  -webkit-mask-image:
+    linear-gradient(90deg, transparent 0%, transparent 40%, #000 72%, #000 100%),
+    linear-gradient(180deg, transparent 0%, #000 34%, #000 100%);
+  -webkit-mask-composite: source-in;
+  mask-image:
+    linear-gradient(90deg, transparent 0%, transparent 40%, #000 72%, #000 100%),
+    linear-gradient(180deg, transparent 0%, #000 34%, #000 100%);
+  mask-composite: intersect;
+  pointer-events: none;
+}
+
+/* Haugtussa-kortet: skogsbildet beskjæres litt tettere mot ansiktet, så det leses i liten størrelse.
+   Bildet gjøres 32 % bredere enn kortet og kortet skjærer bort kantene (bildeflaten er like stor som før). */
+.program-card[href="haugtussa.html"] img {
+  width: 132%;
+  max-width: none;
+  aspect-ratio: 1.32 / 1;
+  margin-left: -16%;
+  object-position: 50% 18%;
+  filter: brightness(1.06) saturate(0.95);
+}
+
+.contact-side h2 {
+  font-size: clamp(2.1rem, 3.3vw, 2.9rem);
+  font-weight: 300;
+  line-height: 1.08;
+}
+
+.contact-side p {
+  color: var(--muted);
+}
+
+.contact-main h3 {
+  font-size: clamp(1.7rem, 2.8vw, 2.5rem);
+  font-weight: 300;
+  line-height: 1.16;
+  letter-spacing: -0.012em;
+}
+
+.contact-main p {
+  color: var(--muted);
+}
+
+.contact-row span {
+  font-family: var(--sans);
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.24em;
+  color: var(--moss);
+}
+
+.contact-row a,
+.contact-row strong {
+  font-family: var(--serif);
+  font-variation-settings: "SOFT" 100;
+  font-size: 1.14rem;
+  font-weight: 400;
+  color: var(--brown);
+}
+
+.contact-row a:hover {
+  color: var(--moss);
+}
+
+/* ---------- Bunntekst: varm sand, som hos Bøksle ---------- */
+
+footer {
+  background: var(--sand-deep);
+  border-top: 0;
+  color: var(--bark);
+  font-size: 0.86rem;
+  letter-spacing: 0.02em;
+  padding: 26px 0;
+}
+
+.footer-inner a {
+  border-bottom-color: rgba(91, 70, 54, 0.35);
+}
+
+.footer-inner a:hover {
+  color: var(--spruce);
+  border-color: var(--spruce);
+}
+
+/* ---------- Åpningsskjermen ---------- */
+
+.splash {
+  background:
+    radial-gradient(ellipse at 50% 42%, rgba(255, 255, 255, 0.9), transparent 62%),
+    linear-gradient(160deg, #f8f5ee 0%, #efe9dc 100%);
+}
+
+.splash-name {
+  font-family: var(--serif);
+  font-weight: 300;
+  font-variation-settings: "SOFT" 100, "opsz" 144;
+  font-size: clamp(2.1rem, 4.2vw, 3.3rem);
+  letter-spacing: -0.015em;
+  color: var(--brown);
+  background: none;
+  -webkit-background-clip: border-box;
+  background-clip: border-box;
+  -webkit-text-fill-color: currentColor;
+}
+
+.splash-line {
+  background: rgba(83, 98, 54, 0.5);
+}
+
+.splash-sub {
+  font-family: var(--serif);
+  font-weight: 300;
+  font-variation-settings: "SOFT" 100;
+  color: var(--muted);
+}
+
+/* ---------- Mobil ---------- */
+
+@media (max-width: 980px) {
+  .hero-image img {
+    -webkit-mask-image: none;
+    mask-image: none;
+  }
+}
+
+@media (max-width: 760px) {
+  .hero {
+    background: var(--bg);
+  }
+
+  /* Bannerbildet på mobil (bakgrunnsbilde i stilarket): byttes til skogsbildet.
+     Zoomet litt inn, så ansiktet til Marianne blir tydelig på en liten skjerm. */
+  .hero-image-banner {
+    position: relative;
+    background-color: var(--spruce-deep);
+    background-image: url("nye-bilder/1.webp");
+    background-size: 150% auto;
+    background-position: 52% 20%;
+  }
+
+  /* Bildet glir over i lin-fargen nederst, som tåke */
+  .hero-image-banner::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 34%;
+    background: linear-gradient(180deg, rgba(245, 241, 232, 0), var(--bg));
+  }
+
+  .hero-content {
+    background: var(--bg);
+    padding-top: 22px;
+  }
+
+  .hero h1 {
+    font-size: clamp(2.6rem, 12vw, 3.5rem);
+    line-height: 1.02;
+  }
+
+  .album-card h3 {
+    font-size: 0.6rem;
+    letter-spacing: 0.2em;
+  }
+
+  .album-card p {
+    font-size: 0.92rem;
+  }
+
+  .quote-text {
+    font-size: clamp(1.8rem, 8vw, 2.4rem);
+  }
+
+  /* Fjordbildet i Kontakt: hele bredden, svakere, og Marianne helt ute til høyre
+     så hun ikke ligger bak e-post og telefonnummer */
+  .contact::before {
+    opacity: 0.26;
+    background-size: cover;
+    background-position: 56% 50%;
+    -webkit-mask-image: linear-gradient(180deg, transparent 0%, #000 38%, #000 100%);
+    mask-image: linear-gradient(180deg, transparent 0%, #000 38%, #000 100%);
+  }
+}
+
+/* Smale skjermer: de to knappene under «Om Marianne» står side om side (som før),
+   så teksten strammes litt inn for å få plass på én linje */
+@media (max-width: 680px) {
+  .intro-actions {
+    gap: 10px;
+  }
+
+  .intro-actions .button {
+    padding: 0 10px;
+    font-size: 0.64rem;
+    letter-spacing: 0.1em;
+  }
+}
+
+/* Nettbrett (bildet over teksten): samme myke hjørner og skygge som på PC */
+@media (min-width: 761px) and (max-width: 980px) {
+  .hero-image img {
+    border-radius: 2px;
+    box-shadow: 0 40px 70px -36px rgba(21, 40, 31, 0.55);
+  }
+}

@@ -1,0 +1,926 @@
+/* =====================================================================
+   Forslag A – «Fjordlys – kyst og tåke»
+   Lyst og luftig, i slekt med Helene Bøksles side: dis-hvit bakgrunn,
+   tåkeblå og skifergrå tekst, tynne antikva-overskrifter med luft mellom
+   bokstavene, og dempede naturbilder fra kyst, fjord og skog.
+   Bare farger, skrift, bilder og detaljer er endret – oppsettet er som før.
+   Lastes ETTER om-marianne.css og overstyrer den.
+   ===================================================================== */
+
+:root {
+  /* Grunnfarger (overstyrer de gamle rosa/brune variablene) */
+  --bg: #f7f6f2;          /* dis-hvit med et snev av sand */
+  --cream: #fcfbf8;       /* nesten hvit – kort og flater */
+  --white: #ffffff;
+  --rose: #4f6a74;        /* fjordblå skifer – aksent: små titler og lenker */
+  --rose-light: #b9c9c9;  /* havglass – pynt */
+  --brown: #2b3a42;       /* dyp skifer – overskrifter og knapper */
+  --brown-soft: #55636a;  /* mykere skifer */
+  --text: #4a555a;        /* brødtekst */
+  --muted: #657075;       /* dempet tekst (minst 4,5:1 mot bakgrunnen) */
+  --line: rgba(43, 58, 66, 0.12);
+
+  /* Ekstra toner for kyst og tåke */
+  --mist: #e4eae8;        /* tåke over fjorden */
+  --mist-light: #eef1ef;  /* lys tåke */
+  --seaglass: #cfdcda;    /* havglass */
+  --sand: #efe9df;        /* varm sand – kontakt og bunn */
+  --sand-dark: #e7dfd2;
+
+  /* Skrift */
+  --font-display: "Cormorant Garamond", Georgia, "Times New Roman", serif;
+  --font-text: "Newsreader", Georgia, "Times New Roman", serif;
+  --font-sans: "Jost", "Helvetica Neue", Arial, sans-serif;
+}
+
+/* ---------- Grunnlag ---------- */
+
+body.fjordlys {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-text);
+  font-weight: 350;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+/* Cormorant har gammeldagse tall som standard – bruk rette tall (21, ikke «2I») */
+.fjordlys .upcoming-day,
+.fjordlys .event-date-box span,
+.fjordlys .album-card h3,
+.fjordlys .program-card-title {
+  font-variant-numeric: lining-nums;
+}
+
+.fjordlys ::selection {
+  background: var(--seaglass);
+  color: var(--brown);
+}
+
+/* Alle store overskrifter: tynn antikva, store bokstaver, god luft */
+.fjordlys h2,
+.fjordlys .story-copy h3,
+.fjordlys .album-card h3,
+.fjordlys .concerts-heading h2,
+.fjordlys .contact-side h2,
+.fjordlys .contact-main h3,
+.fjordlys .upcoming-title,
+.fjordlys .upcoming-card h3,
+.fjordlys .program-card-title {
+  font-family: var(--font-display);
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--brown);
+}
+
+.fjordlys h2 {
+  font-size: clamp(1.7rem, 3.2vw, 2.7rem);
+  line-height: 1.22;
+  text-wrap: balance;
+}
+
+/* Små titler over seksjonene («Om Marianne», «Aktuelt» …) */
+.fjordlys .section-label,
+.fjordlys .eyebrow,
+.fjordlys .contact-label {
+  font-family: var(--font-sans);
+  font-weight: 400;
+  font-size: 0.72rem;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--rose);
+}
+
+/* Optisk midtstilling: luften etter siste bokstav skyver midtstilte overskrifter
+   litt mot venstre. Like mye luft på venstre side retter det opp. */
+.fjordlys .section-head h2 {
+  padding-left: 0.14em;
+}
+
+.fjordlys .section-head .section-label {
+  padding-left: 0.32em;
+}
+
+.fjordlys .section-subtitle {
+  font-family: var(--font-text);
+  font-size: clamp(1.05rem, 1.4vw, 1.16rem);
+  line-height: 1.7;
+  color: var(--muted);
+}
+
+/* ---------- Knapper: tynne og rolige ---------- */
+
+.fjordlys .button {
+  min-height: 52px;
+  padding: 0 30px;
+  border: 1px solid var(--brown);
+  border-radius: 0;
+  background: transparent;
+  color: var(--brown);
+  font-family: var(--font-sans);
+  font-weight: 400;
+  font-size: 0.72rem;
+  letter-spacing: 0.26em;
+  transition: background 0.3s ease, color 0.3s ease, border-color 0.3s ease, transform 0.3s ease;
+}
+
+.fjordlys .button.primary {
+  background: var(--brown);
+  color: var(--white);
+}
+
+.fjordlys .button:hover {
+  transform: translateY(-1px);
+  background: var(--rose);
+  border-color: var(--rose);
+  color: var(--white);
+}
+
+.fjordlys .button:focus-visible,
+.fjordlys .upcoming-button:focus-visible,
+.fjordlys .event-link:focus-visible,
+.fjordlys .listen-link:focus-visible {
+  outline: 2px solid var(--rose);
+  outline-offset: 3px;
+}
+
+/* ---------- Toppmeny ---------- */
+
+.fjordlys .lang-current,
+.fjordlys .lang-option {
+  font-family: var(--font-sans);
+}
+
+/* Nedtrekkslisten (bare PC – på mobil ligger den flatt i menyen som før) */
+@media (min-width: 1201px) {
+  .fjordlys .lang-list {
+    background: var(--cream);
+    border-color: var(--line);
+    border-radius: 4px;
+    box-shadow: 0 18px 40px rgba(43, 58, 66, 0.12);
+  }
+}
+
+.fjordlys .lang-option {
+  border-radius: 2px;
+  color: var(--brown);
+}
+
+.fjordlys .lang-option:hover,
+.fjordlys .lang-option:focus-visible,
+.fjordlys .lang-option[aria-selected="true"] {
+  background: rgba(79, 106, 116, 0.1);
+}
+
+.fjordlys .lang-flag {
+  box-shadow: 0 0 0 1px rgba(43, 58, 66, 0.14);
+}
+
+/* PC: den flytende pillen blir lys, nesten hvit, med tynn kant */
+@media (min-width: 1201px) {
+  /* NB: ikke backdrop-filter på pillen – da flytter språkknappen seg inn i den */
+  .fjordlys .site-nav {
+    gap: clamp(20px, 2.2vw, 34px);
+    border: 1px solid rgba(43, 58, 66, 0.08);
+    background: rgba(252, 251, 248, 0.92);
+    box-shadow: 0 10px 34px rgba(43, 58, 66, 0.07);
+  }
+
+  .fjordlys .site-nav a {
+    font-family: var(--font-sans);
+    font-size: 0.74rem;
+    font-weight: 400;
+    letter-spacing: 0.2em;
+    color: var(--brown);
+  }
+
+  .fjordlys .site-nav a:hover {
+    color: var(--rose);
+  }
+
+  .fjordlys .site-nav .lang-current {
+    border: 1px solid rgba(43, 58, 66, 0.08);
+    background: rgba(252, 251, 248, 0.8);
+    -webkit-backdrop-filter: blur(14px);
+    backdrop-filter: blur(14px);
+    box-shadow: 0 10px 34px rgba(43, 58, 66, 0.07);
+    font-family: var(--font-sans);
+    font-size: 0.76rem;
+    letter-spacing: 0.2em;
+    color: var(--brown);
+  }
+}
+
+/* Mobil og nettbrett: topplinje og meny */
+@media (max-width: 1200px) {
+  .fjordlys .site-header {
+    background: rgba(247, 246, 242, 0.92);
+    border-bottom: 1px solid var(--line);
+  }
+
+  .fjordlys .mobile-logo {
+    font-family: var(--font-display);
+    font-size: 1.12rem;
+    font-weight: 500;
+    letter-spacing: 0.34em;
+    color: var(--brown);
+  }
+
+  .fjordlys .menu-button span {
+    height: 1px;
+    background: var(--brown);
+  }
+
+  .fjordlys .site-nav {
+    background: var(--bg);
+  }
+
+  .fjordlys .site-nav a,
+  .fjordlys .lang-current {
+    font-family: var(--font-sans);
+    font-size: 0.8rem;
+    font-weight: 400;
+    letter-spacing: 0.24em;
+    color: var(--brown);
+    border-bottom-color: var(--line);
+  }
+
+  .fjordlys .lang-switch {
+    border-bottom-color: var(--line);
+  }
+}
+
+/* ---------- Åpningsskjerm ---------- */
+
+.fjordlys .splash {
+  background:
+    radial-gradient(ellipse 160% 42% at 50% 108%, rgba(207, 220, 218, 0.7), transparent 72%),
+    linear-gradient(180deg, #fcfbf8 0%, var(--bg) 100%);
+}
+
+.fjordlys .splash-name {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(1.25rem, 2.6vw, 1.85rem);
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--brown);
+  background: none;
+  -webkit-text-fill-color: currentColor;
+  /* Optisk midtstilling (luften etter Ø) */
+  padding-left: calc(20px + 0.3em);
+}
+
+.fjordlys .splash-line {
+  background: rgba(79, 106, 116, 0.4);
+}
+
+.fjordlys .splash-sub {
+  font-family: var(--font-text);
+  font-weight: 300;
+  color: var(--muted);
+}
+
+/* ---------- Banneret ---------- */
+
+.fjordlys .hero {
+  background:
+    radial-gradient(ellipse 60% 70% at 92% 8%, rgba(207, 220, 218, 0.5), transparent 70%),
+    linear-gradient(180deg, #fcfbf8 0%, var(--bg) 100%);
+}
+
+.fjordlys .hero::after {
+  background: linear-gradient(180deg, rgba(247, 246, 242, 0), var(--bg));
+}
+
+.fjordlys .hero-inner {
+  align-items: center;
+}
+
+.fjordlys .hero-content {
+  padding-bottom: clamp(36px, 5vw, 60px);
+}
+
+.fjordlys .eyebrow {
+  margin-bottom: 22px;
+}
+
+/* Navnet: tynn antikva i skifer – i stedet for roségull */
+.fjordlys .hero h1 {
+  font-family: var(--font-display);
+  font-weight: 300;
+  font-size: clamp(3rem, 6.2vw, 6.2rem);
+  line-height: 1;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--brown);
+  background: none;
+  -webkit-text-fill-color: currentColor;
+}
+
+.fjordlys .hero-lead {
+  margin-top: 28px;
+  max-width: 540px;
+  font-family: var(--font-text);
+  font-weight: 300;
+  font-size: clamp(1.15rem, 1.7vw, 1.38rem);
+  line-height: 1.6;
+  color: var(--brown-soft);
+}
+
+.fjordlys .hero-actions {
+  margin-top: 34px;
+}
+
+/* Bildet: Marianne på svaberget, dempet, med et tåkefelt forskjøvet bak.
+   Bildeboksen har samme bredde og form (3:2) som portrettet i dag,
+   så banneret får samme høyde og samme oppsett som før. */
+.fjordlys .hero-image {
+  --bildebredde: min(100%, 760px);
+  position: relative;
+  margin-bottom: 0;
+  padding: 0 0 clamp(18px, 2.2vw, 30px) 0;
+}
+
+.fjordlys .hero-image img {
+  position: relative;
+  z-index: 1;
+  width: var(--bildebredde);
+  height: auto;
+  aspect-ratio: 3 / 2;
+  object-fit: cover;
+  /* Ansiktet og kjolen over svaberget i midten av utsnittet */
+  object-position: 50% 34%;
+  -webkit-mask-image: none;
+  mask-image: none;
+  /* Matt og lys, men ikke grå: bare litt mindre farge og kontrast */
+  filter: saturate(0.86) contrast(0.9) brightness(1.04);
+  box-shadow: 0 34px 70px -40px rgba(43, 58, 66, 0.45);
+}
+
+/* Tåke over skogen: et kjølig havglass-slør som lysner de mørke grantrærne
+   (blandingsmodus «screen» løfter bare de mørke partiene, ansiktet holdes klart) */
+.fjordlys .hero-image::after {
+  content: "";
+  position: absolute;
+  z-index: 2;
+  top: 0;
+  right: 0;
+  width: var(--bildebredde);
+  aspect-ratio: 3 / 2;
+  background:
+    radial-gradient(ellipse 70% 55% at 52% 42%, rgba(207, 220, 218, 0) 0%, rgba(207, 220, 218, 0) 45%, rgba(207, 220, 218, 0.16) 100%),
+    linear-gradient(180deg, rgba(214, 226, 226, 0.5) 0%, rgba(214, 226, 226, 0.26) 34%, rgba(214, 226, 226, 0.06) 62%, rgba(214, 226, 226, 0) 100%);
+  mix-blend-mode: screen;
+  pointer-events: none;
+}
+
+.fjordlys .hero-image::before {
+  content: "";
+  position: absolute;
+  z-index: 0;
+  /* Feltet stikker litt ut til venstre for og under bildet */
+  right: calc(var(--bildebredde) * 0.3);
+  bottom: 0;
+  width: calc(var(--bildebredde) * 0.76);
+  height: 58%;
+  background: linear-gradient(180deg, var(--seaglass) 0%, var(--mist) 100%);
+}
+
+/* ---------- Kommende konserter (kortene) ---------- */
+
+.fjordlys .upcoming {
+  background: var(--bg);
+  padding-top: clamp(40px, 5vw, 64px);
+}
+
+.fjordlys .upcoming-title {
+  padding-left: 0.26em; /* optisk midtstilling, se over */
+  font-size: clamp(1.25rem, 2vw, 1.7rem);
+  letter-spacing: 0.26em;
+}
+
+.fjordlys .upcoming-card {
+  border: 1px solid var(--line);
+  border-radius: 0;
+  background: var(--cream);
+  box-shadow: 0 26px 50px -38px rgba(43, 58, 66, 0.45);
+}
+
+.fjordlys .upcoming-date {
+  border-radius: 0;
+  background: var(--white);
+  box-shadow: 0 10px 24px -12px rgba(43, 58, 66, 0.3);
+}
+
+.fjordlys .upcoming-month {
+  background: var(--rose);
+  font-family: var(--font-sans);
+  font-weight: 400;
+  font-size: 0.62rem;
+  letter-spacing: 0.26em;
+}
+
+.fjordlys .upcoming-day {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 2.3rem;
+  color: var(--brown);
+}
+
+.fjordlys .upcoming-day-text {
+  font-size: 1.2rem;
+  letter-spacing: 0.04em;
+}
+
+.fjordlys .upcoming-weekday {
+  font-family: var(--font-sans);
+  font-weight: 300;
+  font-size: 0.74rem;
+  letter-spacing: 0.06em;
+  color: var(--muted);
+}
+
+.fjordlys .upcoming-card h3 {
+  font-weight: 500;
+  font-size: clamp(1rem, 1.3vw, 1.12rem);
+  letter-spacing: 0.16em;
+}
+
+.fjordlys .upcoming-card p {
+  font-family: var(--font-text);
+  font-size: 0.92rem;
+  color: var(--muted);
+}
+
+/* Knappene i kortene: tynn ramme, fylles ved hover */
+.fjordlys .upcoming-button {
+  min-height: 38px;
+  padding: 0 22px;
+  border: 1px solid rgba(43, 58, 66, 0.5);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--brown);
+  box-shadow: none;
+  font-family: var(--font-sans);
+  font-weight: 400;
+  font-size: 0.68rem;
+  letter-spacing: 0.24em;
+  transition: background 0.3s ease, color 0.3s ease, border-color 0.3s ease, transform 0.3s ease;
+}
+
+.fjordlys .upcoming-button:hover {
+  background: var(--brown);
+  border-color: var(--brown);
+  color: var(--white);
+  box-shadow: none;
+}
+
+/* «Se alle» under kortene får fylt farge */
+.fjordlys .upcoming-actions .upcoming-button {
+  background: var(--brown);
+  border-color: var(--brown);
+  color: var(--white);
+}
+
+.fjordlys .upcoming-actions .upcoming-button:hover {
+  background: var(--rose);
+  border-color: var(--rose);
+}
+
+/* ---------- Om Marianne ---------- */
+
+.fjordlys .intro {
+  background: var(--bg);
+  padding: clamp(48px, 6vw, 88px) 0 clamp(56px, 7vw, 96px);
+}
+
+.fjordlys .intro .section-label {
+  margin-bottom: 28px;
+}
+
+.fjordlys .intro-text {
+  font-family: var(--font-text);
+  font-weight: 350;
+  font-size: clamp(1.1rem, 1.4vw, 1.22rem);
+  line-height: 1.8;
+  color: var(--text);
+}
+
+.fjordlys .intro-actions {
+  margin-top: 44px;
+}
+
+/* ---------- Aktuelt: et tåkebånd med konsertprogrammene ---------- */
+
+.fjordlys .aktuelt {
+  position: relative;
+  isolation: isolate;
+  background: linear-gradient(180deg, var(--mist-light) 0%, var(--mist) 100%);
+  border-top: 0;
+  border-bottom: 0;
+}
+
+/* Litt mørkere ingress på det tåkeblå båndet, så kontrasten holder */
+.fjordlys .aktuelt .section-subtitle {
+  color: var(--brown-soft);
+}
+
+.fjordlys .program-head h2 {
+  font-size: clamp(1.55rem, 2.7vw, 2.4rem);
+  line-height: 1.3;
+}
+
+.fjordlys .program-card {
+  border: 0;
+  background: var(--cream);
+  box-shadow: 0 30px 60px -42px rgba(43, 58, 66, 0.55);
+}
+
+.fjordlys .program-card:hover,
+.fjordlys .program-card:focus-visible {
+  transform: translateY(-4px);
+  box-shadow: 0 36px 70px -40px rgba(43, 58, 66, 0.6);
+}
+
+.fjordlys .program-card:focus-visible {
+  outline: 2px solid var(--rose);
+}
+
+/* Bildene dempes litt, og får full farge når man peker på kortet */
+.fjordlys .program-card img {
+  background: var(--mist);
+  filter: saturate(0.82) contrast(0.97);
+  transition: filter 0.5s ease;
+}
+
+.fjordlys .program-card:hover img,
+.fjordlys .program-card:focus-visible img {
+  filter: none;
+}
+
+.fjordlys .program-card-body {
+  gap: 8px;
+  padding: 18px 18px 20px;
+}
+
+.fjordlys .program-card-title {
+  font-weight: 500;
+  font-size: 1.1rem;
+  letter-spacing: 0.16em;
+}
+
+.fjordlys .program-card-text {
+  font-family: var(--font-text);
+  font-size: 0.93rem;
+  line-height: 1.55;
+  color: var(--muted);
+}
+
+.fjordlys .program-card-more {
+  padding-top: 8px;
+  font-family: var(--font-sans);
+  font-weight: 400;
+  font-size: 0.66rem;
+  letter-spacing: 0.26em;
+  color: var(--rose);
+}
+
+/* ---------- Sitatet: kursiv over et tåkete fjordbilde ---------- */
+
+.fjordlys .quote {
+  position: relative;
+  isolation: isolate;
+  /* Høyden følger bredden, så Marianne på stranden alltid står under sitatet */
+  padding: clamp(72px, 9vw, 120px) 0 clamp(230px, 30vw, 600px);
+  background: var(--bg);
+}
+
+/* Fjordbildet (6.png) tones inn nedenfra, som tåke som letter */
+.fjordlys .quote::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: url("nye-bilder/6.png") 50% 100% / cover no-repeat;
+  filter: saturate(0.7) brightness(1.08) contrast(0.9);
+  -webkit-mask-image: linear-gradient(180deg, transparent 0%, transparent 18%, rgba(0, 0, 0, 0.55) 46%, #000 72%);
+  mask-image: linear-gradient(180deg, transparent 0%, transparent 18%, rgba(0, 0, 0, 0.55) 46%, #000 72%);
+}
+
+.fjordlys .quote-text {
+  max-width: 900px;
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 300;
+  font-size: clamp(2rem, 4.2vw, 3.7rem);
+  line-height: 1.16;
+  letter-spacing: 0;
+  color: var(--brown);
+  text-wrap: balance;
+}
+
+/* Andre setning på egen linje, i fjordblått */
+.fjordlys .quote-text span {
+  display: block;
+  color: var(--rose);
+}
+
+/* ---------- Hør Marianne: plater med et forskjøvet tåkefelt bak ---------- */
+
+.fjordlys .music-section {
+  background: #fdfcfa;
+  border-top: 0;
+  border-bottom: 0;
+}
+
+.fjordlys .album-card img {
+  background: var(--mist);
+  box-shadow: -16px 16px 0 0 var(--mist-light);
+}
+
+.fjordlys .album-card h3 {
+  margin-top: 30px;
+  font-weight: 500;
+  font-size: clamp(0.92rem, 1.3vw, 1.05rem);
+  letter-spacing: 0.2em;
+}
+
+.fjordlys .album-card p {
+  margin-top: 4px;
+  font-family: var(--font-text);
+  font-size: clamp(0.95rem, 1.3vw, 1.05rem);
+  color: var(--muted);
+}
+
+.fjordlys .listen-link {
+  font-family: var(--font-sans);
+  font-weight: 400;
+  font-size: 0.74rem;
+  letter-spacing: 0.26em;
+  color: var(--brown);
+  border-bottom: 1px solid rgba(43, 58, 66, 0.3);
+  padding-bottom: 8px;
+}
+
+.fjordlys .listen-link:hover {
+  color: var(--rose);
+  border-color: var(--rose);
+}
+
+/* ---------- Kommende konserter (listen) – som en rolig turnéliste ---------- */
+
+.fjordlys .concerts {
+  background: var(--bg);
+  border-bottom: 0;
+}
+
+.fjordlys .concerts-heading h2 {
+  font-size: clamp(1.5rem, 2.4vw, 2.1rem);
+  line-height: 1.3;
+  letter-spacing: 0.18em;
+}
+
+.fjordlys .concerts-heading h2 span {
+  margin-top: 16px;
+  font-family: var(--font-sans);
+  font-weight: 300;
+  font-size: 0.8rem;
+  letter-spacing: 0.4em;
+  color: var(--rose);
+}
+
+.fjordlys .event-list {
+  gap: 0;
+}
+
+.fjordlys .event-item {
+  padding: 26px 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.fjordlys .event-item:first-child {
+  padding-top: 4px;
+}
+
+.fjordlys .event-date-box {
+  border-right-color: var(--line);
+}
+
+.fjordlys .event-date-box span {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: 2.3rem;
+  letter-spacing: 0;
+  color: var(--brown);
+}
+
+.fjordlys .event-date-box small {
+  margin-top: 8px;
+  font-family: var(--font-sans);
+  font-weight: 300;
+  font-size: 0.72rem;
+  letter-spacing: 0.04em;
+  color: var(--muted);
+}
+
+.fjordlys .event-info h3 {
+  margin-bottom: 8px;
+  font-family: var(--font-sans);
+  font-weight: 500;
+  font-size: clamp(0.82rem, 1.1vw, 0.92rem);
+  line-height: 1.55;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--brown);
+}
+
+.fjordlys .event-info p {
+  font-family: var(--font-text);
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--muted);
+}
+
+.fjordlys .event-link {
+  font-family: var(--font-sans);
+  font-weight: 400;
+  font-size: 0.68rem;
+  letter-spacing: 0.26em;
+  color: var(--brown);
+  border-bottom-color: rgba(43, 58, 66, 0.35);
+  padding-bottom: 6px;
+}
+
+.fjordlys .event-link:hover {
+  color: var(--rose);
+  border-bottom-color: var(--rose);
+}
+
+/* ---------- Kontakt og bunn: varm sand, som hos Helene ---------- */
+
+.fjordlys .contact {
+  background: linear-gradient(180deg, var(--sand) 0%, #ece5da 100%);
+  padding-top: clamp(56px, 6vw, 84px);
+  padding-bottom: clamp(44px, 5vw, 64px);
+}
+
+.fjordlys .contact-side h2 {
+  font-size: clamp(1.5rem, 2.4vw, 2.1rem);
+  letter-spacing: 0.18em;
+}
+
+.fjordlys .contact-side p,
+.fjordlys .contact-main p {
+  font-family: var(--font-text);
+  color: var(--brown-soft);
+}
+
+.fjordlys .contact-main h3 {
+  margin-top: 4px;
+  font-style: italic;
+  font-weight: 300;
+  font-size: clamp(1.9rem, 3.2vw, 2.9rem);
+  line-height: 1.15;
+  letter-spacing: 0;
+  text-transform: none;
+  text-wrap: balance;
+}
+
+.fjordlys .contact-row span {
+  font-family: var(--font-sans);
+  font-weight: 400;
+  font-size: 0.68rem;
+  letter-spacing: 0.28em;
+  color: var(--rose);
+}
+
+.fjordlys .contact-row a,
+.fjordlys .contact-row strong {
+  font-family: var(--font-text);
+  font-weight: 400;
+  font-size: 1.08rem;
+  color: var(--brown);
+}
+
+.fjordlys .contact-row a:hover {
+  color: var(--rose);
+}
+
+.fjordlys footer {
+  background: var(--sand-dark);
+  border-top: 1px solid rgba(43, 58, 66, 0.08);
+  padding: 22px 0;
+  font-family: var(--font-sans);
+  font-weight: 300;
+  font-size: 0.82rem;
+  letter-spacing: 0.04em;
+  color: var(--brown-soft);
+}
+
+.fjordlys .footer-inner a {
+  border-bottom-color: rgba(43, 58, 66, 0.3);
+}
+
+.fjordlys .footer-inner a:hover {
+  color: var(--rose);
+  border-bottom-color: var(--rose);
+}
+
+/* ---------- Mellomstore skjermer ---------- */
+
+@media (max-width: 980px) {
+  /* Tåkefeltet bak bannerbildet tas bort når alt står i én kolonne */
+  .fjordlys .hero-image::before {
+    display: none;
+  }
+
+  /* Tåkesløret følger bildet, som nå står midt på */
+  .fjordlys .hero-image::after {
+    left: 50%;
+    right: auto;
+    transform: translateX(-50%);
+  }
+
+  .fjordlys .hero-image {
+    /* Samme bildebredde som originalen på nettbrett */
+    --bildebredde: min(100%, 620px);
+    padding-bottom: 0;
+  }
+}
+
+/* ---------- Mobil ---------- */
+
+@media (max-width: 760px) {
+  /* Bannerbildet på mobil: svaberget-bildet, tonet ut nederst */
+  .fjordlys .hero {
+    background: var(--bg);
+  }
+
+  .fjordlys .hero-image-banner {
+    position: relative;
+    background-color: var(--mist);
+    /* Samme kjølige tåkeslør som på PC: «screen» lysner bare de mørke grantrærne */
+    background-image:
+      linear-gradient(180deg, rgba(214, 226, 226, 0.52) 0%, rgba(214, 226, 226, 0.28) 34%, rgba(214, 226, 226, 0.08) 62%, rgba(214, 226, 226, 0.04) 100%),
+      url("nye-bilder/1.webp");
+    background-blend-mode: screen, normal;
+    background-size: cover, cover;
+    background-position: 50% 30%, 50% 30%;
+  }
+
+  .fjordlys .hero-image-banner::after {
+    content: "";
+    display: block;
+    position: absolute;
+    top: auto;
+    left: 0;
+    right: 0;
+    bottom: -1px;
+    width: auto;
+    height: 81px;
+    aspect-ratio: auto;
+    transform: none;
+    background: linear-gradient(180deg, rgba(247, 246, 242, 0), var(--bg));
+    mix-blend-mode: normal;
+  }
+
+  .fjordlys .hero-content {
+    background: var(--bg);
+    padding-top: 26px;
+  }
+
+  .fjordlys .hero h1 {
+    font-size: clamp(2.3rem, 10.5vw, 3.2rem);
+  }
+
+  .fjordlys .album-card img {
+    box-shadow: -9px 9px 0 0 var(--mist);
+  }
+
+  .fjordlys .album-card h3 {
+    margin-top: 18px;
+    font-size: 0.78rem;
+    letter-spacing: 0.14em;
+  }
+
+  .fjordlys .album-card p {
+    font-size: 0.85rem;
+  }
+
+  .fjordlys .quote {
+    padding-bottom: clamp(200px, 56vw, 260px);
+  }
+}
+
+/* Smal mobil: knappene side om side får midtstilt tekst, også når den deler seg på to linjer */
+@media (max-width: 680px) {
+  .fjordlys .button {
+    padding: 0 14px;
+    text-align: center;
+    line-height: 1.45;
+    letter-spacing: 0.2em;
+  }
+}
