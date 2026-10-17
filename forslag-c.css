@@ -928,7 +928,9 @@ footer {
     background-image: url("nye-bilder/13.webp");
     /* Litt større enn feltet, så fotografens merke i hjørnet nede til venstre faller utenfor */
     background-size: max(calc(100% + 48px), 460px) auto;
-    background-position: 50% 62%;
+    /* Utsnittet sitter høyt nok til at hodet alltid er med, også på bredere mobiler og nettbrett */
+    background-position: 50% 38%;
+    min-height: clamp(340px, 62vw, 460px);
   }
 
   .hero-content {
