@@ -20,3 +20,100 @@
       linear-gradient(180deg, rgba(4, 8, 12, .5) 0%, rgba(4, 8, 12, 0) 18%);
   }
 }
+
+/* ---------- Intro (vises et lite øyeblikk første gang siden åpnes) ----------
+   Samme idé som på dagens side, i den mørke stilen: navnet i tynne, sperrede
+   bokstaver, en tynn strek som tegnes inn og «Offisiell nettside». Ren CSS. */
+.intro {
+  position: fixed;
+  inset: 0;
+  z-index: 5000;
+  display: grid;
+  place-items: center;
+  background:
+    radial-gradient(ellipse 60% 50% at 70% 35%, rgba(14, 60, 149, .22), transparent 70%),
+    #02050e;
+  animation: intro-ut .9s ease 2.3s forwards;
+}
+
+.uten-intro .intro {
+  display: none;
+}
+
+.intro__indre {
+  width: 100%;
+  padding: 0 24px;
+  text-align: center;
+}
+
+.intro__navn {
+  font-family: "Jost", Arial, sans-serif;
+  font-weight: 200;
+  font-size: clamp(20px, 3.4vw, 40px);
+  letter-spacing: .42em;
+  /* luften etter siste bokstav veies opp, så navnet står midt på */
+  padding-left: .42em;
+  text-transform: uppercase;
+  color: #f2ede4;
+  opacity: 0;
+  animation: intro-inn 1s ease .15s forwards;
+}
+
+.intro__strek {
+  display: block;
+  width: min(420px, 60%);
+  height: 1px;
+  margin: 26px auto 24px;
+  background: rgba(242, 237, 228, .45);
+  transform: scaleX(0);
+  animation: intro-strek 1.2s cubic-bezier(.22, .61, .36, 1) .45s forwards;
+}
+
+.intro__under {
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-style: italic;
+  font-weight: 300;
+  font-size: clamp(17px, 1.7vw, 22px);
+  letter-spacing: .06em;
+  color: rgba(242, 237, 228, .72);
+  opacity: 0;
+  animation: intro-inn 1s ease 1s forwards;
+}
+
+@keyframes intro-inn {
+  to { opacity: 1; }
+}
+
+@keyframes intro-strek {
+  to { transform: scaleX(1); }
+}
+
+@keyframes intro-ut {
+  to { opacity: 0; visibility: hidden; }
+}
+
+@media (max-width: 759px) {
+  .intro__navn {
+    font-size: clamp(15px, 4.6vw, 20px);
+    letter-spacing: .3em;
+    padding-left: .3em;
+  }
+}
+
+/* Redusert bevegelse: ingen glidning, bare en kort, rolig visning */
+@media (prefers-reduced-motion: reduce) {
+  .intro {
+    animation: intro-ut .4s ease 1.2s forwards;
+  }
+
+  .intro__navn,
+  .intro__under {
+    opacity: 1;
+    animation: none;
+  }
+
+  .intro__strek {
+    transform: none;
+    animation: none;
+  }
+}

@@ -14,11 +14,33 @@
   <link rel="preload" as="image" href="nye-bilder/18-naer.webp" media="(min-width: 760px) and (orientation: landscape)" fetchpriority="high">
   <link rel="preload" as="image" href="nye-bilder/15.webp" media="(max-width: 759px), (orientation: portrait)" fetchpriority="high">
   <link rel="stylesheet" href="eksklusiv-1.css?v=7">
-  <link rel="stylesheet" href="eksklusiv-1b.css?v=3">
-  <script>document.documentElement.classList.add("js");</script>
+  <link rel="stylesheet" href="eksklusiv-1b.css?v=4">
+  <script>
+    document.documentElement.classList.add("js");
+    /* Introen med navnet vises bare første gang siden åpnes i en økt */
+    try {
+      if (sessionStorage.getItem("intro-sett-eksklusiv")) {
+        document.documentElement.classList.add("uten-intro");
+      } else {
+        sessionStorage.setItem("intro-sett-eksklusiv", "1");
+        document.documentElement.classList.add("med-intro");
+      }
+    } catch (feil) {
+      document.documentElement.classList.add("med-intro");
+    }
+  </script>
 </head>
 
 <body>
+  <!-- Intro: navnet og «Offisiell nettside», tones ut av seg selv (ren CSS) -->
+  <div class="intro" aria-hidden="true">
+    <div class="intro__indre">
+      <div class="intro__navn">Marianne Juvik Sæbø</div>
+      <span class="intro__strek"></span>
+      <div class="intro__under">Offisiell nettside</div>
+    </div>
+  </div>
+
   <a class="hopp" href="#innhold">Hopp til innholdet</a>
 
   <!-- Fast ramme: navnetrekk og navigasjon i hjørnene -->
@@ -456,8 +478,11 @@
       /* Åpningsbildet glir rolig på plass når det er lastet */
       var heltBilde = document.querySelector(".helt__bilde img");
       function heltKlar() { document.querySelector(".helt").classList.add("er-klar"); }
-      if (heltBilde.complete) { heltKlar(); } else { heltBilde.addEventListener("load", heltKlar); heltBilde.addEventListener("error", heltKlar); }
-      setTimeout(heltKlar, 1400); /* teksten vises selv om bildet laster tregt */
+      /* Med intro venter åpningsbildet til introen er tonet ut */
+      var venteTid = rot.classList.contains("med-intro") && !redusert ? 2600 : 0;
+      function heltKlarEtterIntro() { setTimeout(heltKlar, venteTid); }
+      if (heltBilde.complete) { heltKlarEtterIntro(); } else { heltBilde.addEventListener("load", heltKlarEtterIntro); heltBilde.addEventListener("error", heltKlarEtterIntro); }
+      setTimeout(heltKlar, venteTid + 1400); /* teksten vises selv om bildet laster tregt */
 
       /* Fullskjermsmeny */
       var meny = document.getElementById("meny");
