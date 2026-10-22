@@ -2046,3 +2046,10 @@ button {
     transform: none;
   }
 }
+
+/* Lenken «Spør om pris og ledige datoer» i teksten om konsertprogrammene */
+.seksjonshode__ingress a {
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 4px;
+}
