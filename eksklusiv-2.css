@@ -1598,3 +1598,27 @@ html:not(.js) .program-fremdrift { display: none; }
   .js .helt-innhold > * { opacity: 1; transform: none; }
   .rull span::after { display: none; }
 }
+
+/* ---------- Åpningsbildet: Marianne på scenen (byttet 22.10) ----------
+   PC og liggende nettbrett bruker 18-naer.webp: nærbildet av Marianne lagt
+   nøyaktig oppå scenebildet, så det blå sceneteppet bak henne er ekte.
+   Mobil og høykant bruker nærbildet 15.webp. */
+@media (min-width: 760px) and (orientation: landscape) {
+  .helt-bilde img {
+    object-position: 86% 30%;
+    transform-origin: 80% 30%;
+  }
+}
+
+@media (min-width: 760px) and (max-width: 1199px) and (orientation: landscape) {
+  .helt-bilde img {
+    object-position: 70% 30%;
+  }
+}
+
+@media (max-width: 759px), (orientation: portrait) {
+  .helt-bilde img {
+    object-position: 58% 20%;
+    transform-origin: 58% 25%;
+  }
+}
