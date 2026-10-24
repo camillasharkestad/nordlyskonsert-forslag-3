@@ -54,6 +54,8 @@
     }
     .forklaring { color: var(--dempet); margin: 0 0 22px; }
     .rutenett { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 26px; }
+    /* Fire forslag med samme oppsett: plass til alle fire på én rad på PC */
+    .rutenett--fire { grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); }
     .kort {
       display: flex;
       flex-direction: column;
@@ -87,25 +89,12 @@
     <h1>Designforslag til nettsiden</h1>
     <p class="ingress">
       Her er forslagene til ny stil for forsiden, med hav, fjord, skog og natur. Klikk på et forslag for å se hele forsiden.
-      Den virker både på PC og mobil. Undersidene (ÁLFR, Haugtussa osv.) er foreløpig som i dag.
+      Den virker både på PC og mobil. Undersidene (ÁLFR, Haugtussa osv.) er foreløpig like i alle forslagene.
     </p>
 
-    <h2>Dagens design</h2>
-    <p class="forklaring">Forsiden slik den er i dag – også et alternativ å beholde.</p>
-    <div class="rutenett">
-      <a class="kort" href="dagens.html">
-        <img src="https://res.cloudinary.com/ddr47lhck/image/upload/f_auto,q_auto,c_fill,g_face,w_900,h_600/v1781169224/marianne_skwzxk.png" alt="Bannerbildet av Marianne fra dagens forside" style="object-position: 50% 30%">
-        <span class="kort-tekst">
-          <span class="bokstav">Opprinnelig</span>
-          <h3>Dagens forside</h3>
-          <p>Det nåværende oppsettet, med dagens farger, skrift og bilder. Fint å sammenligne forslagene med.</p>
-        </span>
-      </a>
-    </div>
-
-    <h2>Forslag 3 – samme oppsett, ny stemning</h2>
-    <p class="forklaring">Oppsettet er det samme som i dag. Bare farger, skrift og bilder er nye.</p>
-    <div class="rutenett">
+    <h2>Forslag 3 – samme oppsett, ulik stemning</h2>
+    <p class="forklaring">Samme oppsett i alle fire. Bare farger, skrift og bilder er ulike.</p>
+    <div class="rutenett rutenett--fire">
       <a class="kort" href="index-a.html">
         <img src="nye-bilder/1.webp" alt="Marianne på svaberget i tyllkjole" style="object-position: 50% 30%">
         <span class="kort-tekst">
@@ -130,10 +119,18 @@
           <p>Sand, havblått og gyllent kveldslys, med følelse av horisont og åpent hav.</p>
         </span>
       </a>
+      <a class="kort" href="index-d.html">
+        <img src="https://res.cloudinary.com/ddr47lhck/image/upload/f_auto,q_auto,c_fill,g_face,w_900,h_600/v1781169224/marianne_skwzxk.png" alt="Marianne i lys strikkegenser" style="object-position: 50% 30%">
+        <span class="kort-tekst">
+          <span class="bokstav">Forslag D</span>
+          <h3>Rosé og krem</h3>
+          <p>Lyst og varmt, med rosé, kremhvitt og elegant skrift. Portrett i lys strikkegenser.</p>
+        </span>
+      </a>
     </div>
 
     <h2>Eksklusive forslag – nytt oppsett</h2>
-    <p class="forklaring">Helt nytt oppsett, inspirert av nettsidene til store internasjonale artister. Innholdet er det samme som i dag.</p>
+    <p class="forklaring">Helt nytt oppsett, inspirert av nettsidene til store internasjonale artister. Innholdet er det samme i alle forslagene.</p>
     <div class="rutenett">
       <a class="kort" href="eksklusiv-1.html">
         <img src="nye-bilder/9.webp" alt="Konsert med månen og grana på lerretet" style="object-position: 50% 40%">
