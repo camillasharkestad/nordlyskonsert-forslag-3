@@ -628,7 +628,8 @@ aside[id] { scroll-margin-top: 72px; }
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: 52% 28%;
+  /* Svart-hvitt portrett: ansiktet i øvre del av rammen */
+  object-position: 50% 18%;
 }
 .om-innfelt {
   position: absolute;
